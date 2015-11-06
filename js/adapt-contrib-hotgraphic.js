@@ -167,6 +167,12 @@ define(function(require) {
             var currentIndex = this.$('.hotgraphic-item.active').index();
             this.$('.hotgraphic-popup').hide();
             Adapt.trigger('popup:closed',  this.$('.hotgraphic-popup-inner'));
+
+            ///// Audio /////
+            if (this.model.get('_audio')) {
+                Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+            }
+            ///// End of Audio /////
         },
 
         previousHotGraphic: function (event) {
@@ -215,6 +221,16 @@ define(function(require) {
             this.$('.hotgraphic-graphic-pin').eq(index).addClass('visited').attr('aria-label', "Item visited.");
             $.a11y_alert("visited");
             this.checkCompletionStatus();
+
+            ///// Audio /////
+            if (this.model.get('_audio')) {
+                // Determine which file to play
+                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/ogg')) this.audioFile = item._audio.ogg;
+                if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/mpeg')) this.audioFile = item._audio.mp3;
+                // Trigger audio
+                Adapt.trigger('audio:playAudio', this.audioFile, this.model.get('_id'), this.model.get('_audio')._channel);
+            }
+            ///// End of Audio /////
         },
 
         getVisitedItems: function() {
