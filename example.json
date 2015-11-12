@@ -21,6 +21,17 @@
       "src": "hot_graphic.jpg",
       "alt": "alt text"
     },
+    "_audio": {
+        "_isEnabled": true,
+        "_showControls": true,
+        "_autoplay": true,
+        "_channel": 0,
+        "_location": "top-right",
+        "_media": {
+            "mp3": "course/en/audio/MAC_M1_04.mp3",
+            "ogg": "course/en/audio/MAC_M1_04.ogg"
+        }
+    },
     "_items": [
         {
             "title": "Hotspot 1 title",
@@ -34,7 +45,11 @@
             "strapline": "strapline...",
             "_classes": "top-left",
             "_top": 5,
-            "_left": 20
+            "_left": 20,
+            "_audio": {
+                "mp3": "course/en/audio/MAC_M1_04_1.mp3",
+                "ogg": "course/en/audio/MAC_M1_04_1.ogg"
+            }
         },
         {
             "title": "Hotspot 2 title",
@@ -48,7 +63,11 @@
             "strapline": "strapline...",
             "_classes": "center",
             "_top": 25,
-            "_left": 60
+            "_left": 60,
+            "_audio": {
+                "mp3": "course/en/audio/MAC_M1_04_2.mp3",
+                "ogg": "course/en/audio/MAC_M1_04_2.ogg"
+            }
         },
         {
             "title": "Hotspot 3 title",
@@ -62,7 +81,11 @@
             "strapline": "strapline...",
             "_classes": "bottom-right",
             "_top": 85,
-            "_left": 40
+            "_left": 40,
+            "_audio": {
+                "mp3": "course/en/audio/MAC_M1_04_3.mp3",
+                "ogg": "course/en/audio/MAC_M1_04_3.ogg"
+            }
         }
     ]
 }
@@ -91,6 +114,17 @@
       "src": "hot_graphic.jpg",
       "alt": "alt text"
     },
+    "_audio": {
+        "_isEnabled": true,
+        "_showControls": true,
+        "_autoplay": true,
+        "_channel": 0,
+        "_location": "top-right",
+        "_media": {
+            "mp3": "course/en/audio/MAC_M1_04.mp3",
+            "ogg": "course/en/audio/MAC_M1_04.ogg"
+        }
+    },
     "_items": [
         {
             "title": "Hotspot 1 title",
@@ -104,7 +138,11 @@
             "strapline": "strapline...",
             "_classes": "",
             "_top": 0,
-            "_left": 0
+            "_left": 0,
+            "_audio": {
+                "mp3": "course/en/audio/MAC_M1_04_1.mp3",
+                "ogg": "course/en/audio/MAC_M1_04_1.ogg"
+            }
         },
         {
             "title": "Hotspot 2 title",
@@ -118,7 +156,11 @@
             "strapline": "strapline...",
             "_classes": "",
             "_top": 0,
-            "_left": 50
+            "_left": 50,
+            "_audio": {
+                "mp3": "course/en/audio/MAC_M1_04_2.mp3",
+                "ogg": "course/en/audio/MAC_M1_04_2.ogg"
+            }
         },
         {
             "title": "Hotspot 3 title",
@@ -132,7 +174,11 @@
             "strapline": "strapline...",
             "_classes": "",
             "_top": 50,
-            "_left": 0
+            "_left": 0,
+            "_audio": {
+                "mp3": "course/en/audio/MAC_M1_04_3.mp3",
+                "ogg": "course/en/audio/MAC_M1_04_3.ogg"
+            }
         },
         {
             "title": "Hotspot 4 title",
@@ -146,7 +192,11 @@
             "strapline": "strapline...",
             "_classes": "",
             "_top": 50,
-            "_left": 50
+            "_left": 50,
+            "_audio": {
+                "mp3": "course/en/audio/MAC_M1_04_4.mp3",
+                "ogg": "course/en/audio/MAC_M1_04_4.ogg"
+            }
         }
     ]
 }
