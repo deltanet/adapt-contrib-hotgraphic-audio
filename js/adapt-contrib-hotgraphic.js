@@ -15,6 +15,10 @@ define(function(require) {
             }
             if (Adapt.device.screenSize == 'large') {
                 this.render();
+
+                if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                    this.replaceText(Adapt.audio.textSize);
+                }
             } else {
                 this.reRender();
             }
@@ -31,6 +35,9 @@ define(function(require) {
 
         preRender: function() {
             this.listenTo(Adapt, 'device:changed', this.reRender, this);
+
+            // Listen for text change on audio extension
+            this.listenTo(Adapt, "audio:changeText", this.replaceText);
 
             // Checks to see if the hotgraphic should be reset on revisit
             this.checkIfResetOnRevisit();
@@ -155,7 +162,7 @@ define(function(require) {
             this.$('.hotgraphic-popup').attr('class', 'hotgraphic-popup ' + 'item-' + currentIndex);
             this.$('.hotgraphic-popup').show();      
             this.$('.hotgraphic-popup-inner .active').a11y_on(true);
-              
+
             Adapt.trigger('popup:opened',  this.$('.hotgraphic-popup-inner'));
 
             this.$('.hotgraphic-popup-inner .active').a11y_focus();
@@ -260,6 +267,31 @@ define(function(require) {
                 this.on(this.completionEvent, _.bind(this.onCompletion, this));
             } else {
                 this.$('.component-widget').on('inview', _.bind(this.inview, this));
+            }
+        },
+
+        // Reduced text
+        replaceText: function(value) {
+            // If enabled
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                // Change component title and body
+                if(value == 0) {
+                    this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
+                    this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
+                } else {
+                    this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
+                    this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
+                }
+                // Change each items title and body
+                for (var i = 0; i < this.model.get('_items').length; i++) {
+                    if(value == 0) {
+                        this.$('.hotgraphic-content-title').eq(i).html(this.model.get('_items')[i].title);
+                        this.$('.hotgraphic-content-body').eq(i).html(this.model.get('_items')[i].body);
+                    } else {
+                        this.$('.hotgraphic-content-title').eq(i).html(this.model.get('_items')[i].titleReduced);
+                        this.$('.hotgraphic-content-body').eq(i).html(this.model.get('_items')[i].bodyReduced);
+                    }
+                }
             }
         }
 
