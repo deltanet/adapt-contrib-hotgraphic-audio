@@ -176,7 +176,7 @@ define(function(require) {
             Adapt.trigger('popup:closed',  this.$('.hotgraphic-popup-inner'));
 
             ///// Audio /////
-            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
             }
             ///// End of Audio /////
@@ -230,7 +230,7 @@ define(function(require) {
             this.checkCompletionStatus();
 
             ///// Audio /////
-            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+            if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 // Determine which file to play
                 if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/ogg')) this.audioFile = item._audio.ogg;
                 if (Adapt.audio.audioClip[this.model.get('_audio')._channel].canPlayType('audio/mpeg')) this.audioFile = item._audio.mp3;
