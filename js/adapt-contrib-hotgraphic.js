@@ -26,10 +26,7 @@ define(function(require) {
 
         events: function() {
             return {
-                'click .hotgraphic-graphic-pin': 'openHotGraphic',
-                'click .hotgraphic-popup-done': 'closeHotGraphic',
-                'click .hotgraphic-popup-nav .back': 'previousHotGraphic',
-                'click .hotgraphic-popup-nav .next': 'nextHotGraphic'
+                'click .hotgraphic-graphic-pin': 'onItemClicked'
             }
         },
 
@@ -38,6 +35,9 @@ define(function(require) {
 
             // Listen for text change on audio extension
             this.listenTo(Adapt, "audio:changeText", this.replaceText);
+
+            this.listenTo(Adapt, 'hotgraphicNotify:back', this.previousItem);
+            this.listenTo(Adapt, 'hotgraphicNotify:next', this.nextItem);
 
             // Checks to see if the hotgraphic should be reset on revisit
             this.checkIfResetOnRevisit();
@@ -50,6 +50,8 @@ define(function(require) {
             }, this));
 
             this.setupEventListeners();
+
+            var activeItem = 0;
         },
 
         // Used to check if the hotgraphic should reset on revisit
@@ -122,7 +124,7 @@ define(function(require) {
 
             return model;
         },
-
+        /*
         applyNavigationClasses: function (index) {
             var $nav = this.$('.hotgraphic-popup-nav'),
                 itemCount = this.$('.hotgraphic-item').length;
@@ -148,7 +150,9 @@ define(function(require) {
             this.$('.hotgraphic-popup').attr('class', 'hotgraphic-popup ' + 'item-' + index + ' ' + classes);
 
         },
+        */
 
+        /*
         openHotGraphic: function (event) {
             event.preventDefault();
             this.$('.hotgraphic-popup-inner').a11y_on(false);
@@ -168,7 +172,8 @@ define(function(require) {
             this.$('.hotgraphic-popup-inner .active').a11y_focus();
             this.applyNavigationClasses(currentIndex);
         },
-
+        */
+        /*
         closeHotGraphic: function(event) {
             event.preventDefault();
             var currentIndex = this.$('.hotgraphic-item.active').index();
@@ -181,7 +186,8 @@ define(function(require) {
             }
             ///// End of Audio /////
         },
-
+        */
+        /*
         previousHotGraphic: function (event) {
             event.preventDefault();
             var currentIndex = this.$('.hotgraphic-item.active').index();
@@ -202,7 +208,8 @@ define(function(require) {
             this.$('.hotgraphic-popup-inner .active').a11y_on(true);
             this.$('.hotgraphic-popup-inner .active').a11y_focus();
         },
-
+        */
+        /*
         nextHotGraphic: function (event) {
             event.preventDefault();
             var currentIndex = this.$('.hotgraphic-item.active').index();
@@ -221,6 +228,7 @@ define(function(require) {
             this.$('.hotgraphic-popup-inner .active').a11y_on(true);
             this.$('.hotgraphic-popup-inner .active').a11y_focus();
         },
+        */
 
         setVisited: function(index) {
             var item = this.model.get('_items')[index];
@@ -269,6 +277,144 @@ define(function(require) {
                 this.on(this.completionEvent, _.bind(this.onCompletion, this));
             } else {
                 this.$('.component-widget').on('inview', _.bind(this.inview, this));
+            }
+        },
+
+        onItemClicked: function(event) {
+
+            event.preventDefault();
+            this.$('.hotgraphic-popup-inner').a11y_on(false);
+            this.$('.hotgraphic-item.active').removeClass('active');
+
+            var currentHotSpot = $(event.currentTarget).data('id');
+            this.$('.'+currentHotSpot).addClass('active');
+            var currentIndex = this.$('.hotgraphic-item.active').index();
+            this.setVisited(currentIndex);
+
+            var itemModel = this.model.get('_items')[currentIndex];
+
+            activeItem = currentIndex;
+            this.showItemContent(itemModel);
+        },
+
+        showItemContent: function(itemModel) {
+            if(this.isPopupOpen) return;// ensure multiple clicks don't open multiple notify popups
+
+            // Set popup text to default full size
+            var popupObject_title = itemModel.title;
+            var popupObject_body = itemModel.body;
+
+            // If reduced text is enabled and selected
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+                popupObject_title = itemModel.titleReduced;
+                popupObject_body = itemModel.bodyReduced;
+            }
+
+            // Trigger which type of notify based on the '_canCycleThroughPagination' setting
+            if(this.model.get('_canCycleThroughPagination')) {
+                var interactionObject = {
+                    title: popupObject_title,
+                    body: "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
+                        "<img class='notify-graphic' src='" +
+                        itemModel._graphic.src + "' alt='" +
+                        itemModel._graphic.alt + "'/></div>",
+                    _back:[
+                        {
+                            _callbackEvent: "hotgraphicNotify:back"
+                        }
+                    ],
+                    _next:[
+                        {
+                            _callbackEvent: "hotgraphicNotify:next"
+                        }
+                    ],
+                    _showIcon: false
+                }
+                Adapt.trigger('notify:interaction', interactionObject);
+
+                // Delay showing the nav arrows until notify has faded in
+                _.delay(_.bind(function() {
+                    this.updateNotifyNav(activeItem);
+                }, this), 600);
+
+            } else {
+                var popupObject = {
+                    title: popupObject_title,
+                    body: "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
+                        "<img class='notify-graphic' src='" +
+                        itemModel._graphic.src + "' alt='" +
+                        itemModel._graphic.alt + "'/></div>"
+                }
+                Adapt.trigger('notify:popup', popupObject);
+            }
+
+            Adapt.once("notify:closed", _.bind(function() {
+                this.isPopupOpen = false;
+                ///// Audio /////
+                if (this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+                    Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+                }
+                ///// End of Audio /////
+                this.$('.hotgraphic-item.active').removeClass('active');
+                //
+            }, this));
+        },
+
+        previousItem: function (event) {
+            activeItem--;
+            this.updateNotifyContent(activeItem);
+        },
+
+        nextItem: function (event) {
+            activeItem++;
+            this.updateNotifyContent(activeItem);
+        },
+
+        updateNotifyContent: function(index) {
+
+            this.$('.hotgraphic-item.active').removeClass('active');
+
+            var itemModel = this.model.get('_items')[index];
+
+            // Set popup text to default full size
+            var popupObject_title = itemModel.title;
+            var popupObject_body = itemModel.body;
+
+            // If reduced text is enabled and selected
+            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+                popupObject_title = itemModel.titleReduced;
+                popupObject_body = itemModel.bodyReduced;
+            }
+
+            $('.notify-popup-title-inner').html(popupObject_title);
+            $('.notify-popup-body-inner').html("<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
+                "<img class='notify-graphic' src='" +
+                itemModel._graphic.src + "' alt='" +
+                itemModel._graphic.alt + "'/></div>");
+
+            this.setVisited(index);
+
+            this.updateNotifyNav(activeItem);
+        },
+
+        updateNotifyNav: function (index) {
+            // Hide buttons
+            if(index === 0) {
+                $('#notify-arrow-back').css('visibility','hidden');
+                $('notify-popup-arrow-l').css('visibility','hidden');
+            }
+            if(index === (this.model.get('_items').length)-1) {
+                $('#notify-arrow-next').css('visibility','hidden');
+                $('notify-popup-arrow-r').css('visibility','hidden');
+            }
+            // Show buttons
+            if(index > 0) {
+                $('#notify-arrow-back').css('visibility','visible');
+                $('notify-popup-arrow-l').css('visibility','visible');
+            }
+            if(index < (this.model.get('_items').length)-1) {
+                $('#notify-arrow-next').css('visibility','visible');
+                $('notify-popup-arrow-r').css('visibility','visible');
             }
         },
 
