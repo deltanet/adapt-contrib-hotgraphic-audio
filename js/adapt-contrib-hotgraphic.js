@@ -36,8 +36,7 @@ define(function(require) {
             // Listen for text change on audio extension
             this.listenTo(Adapt, "audio:changeText", this.replaceText);
 
-            this.listenTo(Adapt, 'hotgraphicNotify:back', this.previousItem);
-            this.listenTo(Adapt, 'hotgraphicNotify:next', this.nextItem);
+            this.listenTo(Adapt, 'notify:closed', this.closeNotify, this);
 
             // Checks to see if the hotgraphic should be reset on revisit
             this.checkIfResetOnRevisit();
@@ -51,7 +50,21 @@ define(function(require) {
 
             this.setupEventListeners();
 
+            var componentActive = false;
             var activeItem = 0;
+        },
+
+        setupNotifyListeners: function() {
+            if (componentActive == true) {
+                this.listenTo(Adapt, 'hotgraphicNotify:back', this.previousItem);
+                this.listenTo(Adapt, 'hotgraphicNotify:next', this.nextItem);
+            }
+        },
+
+        removeNotifyListeners: function() {;
+            this.stopListening(Adapt, 'hotgraphicNotify:back', this.previousItem);
+            this.stopListening(Adapt, 'hotgraphicNotify:next', this.nextItem);
+            componentActive = false;
         },
 
         // Used to check if the hotgraphic should reset on revisit
@@ -293,12 +306,16 @@ define(function(require) {
 
             var itemModel = this.model.get('_items')[currentIndex];
 
+            componentActive = true;
+
             activeItem = currentIndex;
             this.showItemContent(itemModel);
         },
 
         showItemContent: function(itemModel) {
             if(this.isPopupOpen) return;// ensure multiple clicks don't open multiple notify popups
+
+            this.setupNotifyListeners();
 
             // Set popup text to default full size
             var popupObject_title = itemModel.title;
@@ -416,6 +433,10 @@ define(function(require) {
                 $('#notify-arrow-next').css('visibility','visible');
                 $('notify-popup-arrow-r').css('visibility','visible');
             }
+        },
+
+        closeNotify: function() {
+            this.removeNotifyListeners();
         },
 
         // Reduced text
