@@ -92,6 +92,16 @@
       "validators": [],
       "help": "If set to 'true', the items in the open popup will be allowed to cycle through continiously"
     },
+    "_setCompletionOn": {
+      "type":"string",
+      "required":true,
+      "enum": ["allItems", "inview"],
+      "default": "allItems",
+      "title": "Set completion event",
+      "inputType": {"type": "Select", "options":["allItems", "inview"]},
+      "validators": ["required"],
+      "help": "This value determines when the component registers as complete."
+    },
     "_useGraphicsAsPins": {
       "type":"boolean",
       "required":true,
@@ -117,6 +127,14 @@
             "validators": [],
             "help": "Title displayed in the popup"
           },
+          "titleReduced": {
+            "type":"string",
+            "required":false,
+            "default": "",
+            "inputType": "Text",
+            "validators": [],
+            "help": "Reduced text title displayed in the popup"
+          },
           "body": {
             "type":"string",
             "required":true,
@@ -124,6 +142,14 @@
             "inputType": "TextArea",
             "validators": ["required"],
             "help": "Body text displayed in the popup"
+          },
+          "bodyReduced": {
+            "type":"string",
+            "required":false,
+            "default": "",
+            "inputType": "TextArea",
+            "validators": ["required"],
+            "help": "Reduced text body text displayed in the popup"
           },
           "strapline": {
             "type":"string",
@@ -154,14 +180,6 @@
                 "validators": [],
                 "help": "Alternative text for this image"
               },
-              "title": {
-                "type":"string",
-                "required":true,
-                "default": "",
-                "inputType": "Text",
-                "validators": [],
-                "help": "Title text for this image"
-              },
               "_classes": {
                 "type":"string",
                 "required": false,
@@ -178,6 +196,15 @@
             "required": false,
             "default": "",
             "title": "Classes",
+            "inputType": "Text",
+            "validators": [],
+            "help": ""
+          },
+          "pinAlt": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "title": "Pin alternative text",
             "inputType": "Text",
             "validators": [],
             "help": ""
@@ -199,7 +226,39 @@
             "inputType": "Number",
             "validators": ["required", "number"],
             "help": "Top position of pin"
+          },
+          "_audio": {
+            "type": "object",
+            "required": false,
+            "title": "Feedback Audio",
+            "properties": {
+              "src": {
+                "type": "string",
+                "required": false,
+                "default": "",
+                "title": "Audio",
+                "inputType": "Asset:audio",
+                "validators": [],
+                "help": "Optional audio for this item"
+              }
+            }
           }
+        }
+      }
+    },
+    "_reducedText": {
+      "type":"object",
+      "required":false,
+      "title": "Reduced Text Options",
+      "help": "The Audio extension must be installed for reduced text options to work",
+      "properties":{
+        "_isEnabled": {
+          "type":"boolean",
+          "required":false,
+          "default": true,
+          "title": "Reduced Text Enabled",
+          "inputType": { "type": "Boolean", "options": [false, true]},
+          "validators": []
         }
       }
     }

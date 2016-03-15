@@ -20,22 +20,17 @@
       "src": "hot_graphic.jpg",
       "alt": "alt text"
     },
-    "_audio": {
-        "_isEnabled": true,
-        "_showControls": true,
-        "_autoplay": true,
-        "_channel": 0,
-        "_location": "top-right",
-        "_media": {
-            "desktop": "course/en/audio/***.mp3",
-            "mobile": "course/en/audio/***.mp3"
-        }
+    "displayTitleReduced": "Reduced title",
+    "bodyReduced": "Reduced text",
+    "_reducedText": {
+        "_isEnabled": true
     },
     "_items": [
         {
             "title": "Hotspot 1 title",
             "titleReduced": "Reduced title 1",
             "body": "This is display text 1.",
+            "bodyReduced": "Reduced text 1",
             "_graphic": {
                 "src": "image1.jpg",
                 "alt": "alt text",
@@ -54,6 +49,7 @@
             "title": "Hotspot 2 title",
             "titleReduced": "Reduced title 2",
             "body": "This is display text 2.",
+            "bodyReduced": "Reduced text 2",
             "_graphic": {
                 "src": "image2.jpg",
                 "alt": "alt text",
@@ -72,6 +68,7 @@
             "title": "Hotspot 3 title",
             "titleReduced": "Reduced title 3",
             "body": "This is display text 3.",
+            "bodyReduced": "Reduced text 3",
             "_graphic": {
                 "src": "image3.jpg",
                 "alt": "alt text",
@@ -111,21 +108,10 @@
       "src": "hot_graphic.jpg",
       "alt": "alt text"
     },
-    "displayTitleReduced": "Reduced title",
-    "bodyReduced": "Reduced text",
     "_reducedText": {
-        "_isEnabled": true
-    },
-    "_audio": {
         "_isEnabled": true,
-        "_showControls": true,
-        "_autoplay": true,
-        "_channel": 0,
-        "_location": "top-right",
-        "_media": {
-            "desktop": "course/en/audio/***.mp3",
-            "mobile": "course/en/audio/***.mp3"
-        }
+        "displayTitleReduced": "Reduced title",
+        "bodyReduced": "Reduced text",
     },
     "_items": [
         {
