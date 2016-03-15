@@ -3,7 +3,7 @@ define(function(require) {
     var ComponentView = require('coreViews/componentView');
     var Adapt = require('coreJS/adapt');
 
-    var HotGraphic = ComponentView.extend({
+    var HotGraphicAudio = ComponentView.extend({
 
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
@@ -466,8 +466,8 @@ define(function(require) {
 
     });
 
-    Adapt.register('hotgraphic', HotGraphic);
+    Adapt.register('hotgraphic-audio', HotGraphicAudio);
 
-    return HotGraphic;
+    return HotGraphicAudio;
 
 });
