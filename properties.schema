@@ -35,6 +35,22 @@
       "validators": [],
       "help": "This is the instruction text"
     },
+    "displayTitleReduced": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Reduced Text Display Title",
+      "inputType": "Text",
+      "validators": []
+    },
+    "bodyReduced": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Reduced Text Body",
+      "inputType": "TextArea",
+      "validators": []
+    },
     "_graphic": {
       "type":"object",
       "required":false,
