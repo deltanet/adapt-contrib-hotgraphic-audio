@@ -10,7 +10,8 @@
   "component" : "hotgraphic-audio",
   "assetFields" : [
     "_graphic.src",
-    "_items[]._graphic.src"
+    "_items[]._graphic.src",
+    "_items[]._audio.src"
   ],
   "keywords": [
     "adapt-plugin",
