@@ -320,6 +320,7 @@ define(function(require) {
             // Set popup text to default full size
             var popupObject_title = itemModel.title;
             var popupObject_body = itemModel.body;
+            var interactionObject_body = "";
 
             // If reduced text is enabled and selected
             if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
@@ -327,14 +328,18 @@ define(function(require) {
                 popupObject_body = itemModel.bodyReduced;
             }
 
+            // Check if item has a graphic
+            if(itemModel._graphic) {
+                interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._graphic.src + "' alt='" + itemModel._graphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+            } else {
+                interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+            }
+
             // Trigger which type of notify based on the '_canCycleThroughPagination' setting
             if(this.model.get('_canCycleThroughPagination')) {
                 var interactionObject = {
                     title: popupObject_title,
-                    body: "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
-                        "<img class='notify-graphic' src='" +
-                        itemModel._graphic.src + "' alt='" +
-                        itemModel._graphic.alt + "'/></div>",
+                    body: interactionObject_body,
                     _back:[
                         {
                             _callbackEvent: "hotgraphicNotify:back"
@@ -357,10 +362,7 @@ define(function(require) {
             } else {
                 var popupObject = {
                     title: popupObject_title,
-                    body: "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
-                        "<img class='notify-graphic' src='" +
-                        itemModel._graphic.src + "' alt='" +
-                        itemModel._graphic.alt + "'/></div>"
+                    body: interactionObject_body
                 }
                 Adapt.trigger('notify:popup', popupObject);
             }
@@ -396,6 +398,7 @@ define(function(require) {
             // Set popup text to default full size
             var popupObject_title = itemModel.title;
             var popupObject_body = itemModel.body;
+            var interactionObject_body = "";
 
             // If reduced text is enabled and selected
             if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
@@ -403,11 +406,16 @@ define(function(require) {
                 popupObject_body = itemModel.bodyReduced;
             }
 
+            // Check if item has a graphic
+            if(itemModel._graphic) {
+                interactionObject_body = "<div class='notify-container'><img class='notify-graphic' src='" + itemModel._graphic.src + "' alt='" + itemModel._graphic.alt + "'/><div class='notify-body'>" + popupObject_body + "</div></div>";
+            } else {
+                interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
+            }
+
+            // Update elements
             $('.notify-popup-title-inner').html(popupObject_title);
-            $('.notify-popup-body-inner').html("<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div>" +
-                "<img class='notify-graphic' src='" +
-                itemModel._graphic.src + "' alt='" +
-                itemModel._graphic.alt + "'/></div>");
+            $('.notify-popup-body-inner').html(interactionObject_body);
 
             this.setVisited(index);
 
