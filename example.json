@@ -5,7 +5,7 @@
     "_classes": "",
     "_type":"component",
     "_component": "hotgraphic-audio",
-    "_layout": "full",    
+    "_layout": "full",
     "title": "Hot graphic",
     "displayTitle": "Hot graphic",
     "body": "This is optional body text. Select the hotspots on the image to reveal the text. This component will scale down to a narrative when viewed on mobile.",
@@ -19,11 +19,6 @@
     "_graphic": {
       "src": "hot_graphic.jpg",
       "alt": "alt text"
-    },
-    "displayTitleReduced": "Reduced title",
-    "bodyReduced": "Reduced text",
-    "_reducedText": {
-        "_isEnabled": true
     },
     "_items": [
         {
@@ -86,14 +81,14 @@
     ]
 }
 // Example using graphics as pins
-// The following example lays out the item graphics (_items._graphic) in a 2x2 grid. 
+// The following example lays out the item graphics (_items._graphic) in a 2x2 grid.
 {
     "_id": "c-40",
     "_parentId":"b-05",
     "_classes": "",
     "_type":"component",
     "_component": "hotgraphic",
-    "_layout": "full",    
+    "_layout": "full",
     "title": "Hot graphic",
     "displayTitle": "Hot graphic",
     "body": "This is optional body text. Select the hotspots on the image to reveal the text. This component will scale down to a narrative when viewed on mobile.",
@@ -107,11 +102,6 @@
     "_graphic": {
       "src": "hot_graphic.jpg",
       "alt": "alt text"
-    },
-    "_reducedText": {
-        "_isEnabled": true,
-        "displayTitleReduced": "Reduced title",
-        "bodyReduced": "Reduced text",
     },
     "_items": [
         {
