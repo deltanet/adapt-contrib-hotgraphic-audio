@@ -3,7 +3,7 @@ define(function(require) {
     var ComponentView = require('coreViews/componentView');
     var Adapt = require('coreJS/adapt');
 
-    var HotGraphic = ComponentView.extend({
+    var HotGraphicAudio = ComponentView.extend({
 
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
@@ -16,7 +16,7 @@ define(function(require) {
             if (Adapt.device.screenSize == 'large') {
                 this.render();
 
-                if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
+                if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                     this.replaceText(Adapt.audio.textSize);
                 }
             } else {
@@ -106,8 +106,8 @@ define(function(require) {
         },
 
         replaceWithNarrative: function() {
-            if (!Adapt.componentStore.narrative) throw "Narrative not included in build";
-            var Narrative = Adapt.componentStore.narrative;
+            if (!Adapt.componentStore.narrativeAudio) throw "Narrative not included in build";
+            var Narrative = Adapt.componentStore.narrativeAudio;
 
             var model = this.prepareNarrativeModel();
             var newNarrative = new Narrative({ model: model });
@@ -124,7 +124,7 @@ define(function(require) {
 
         prepareNarrativeModel: function() {
             var model = this.model;
-            model.set('_component', 'narrative');
+            model.set('_component', 'narrativeAudio');
             model.set('_wasHotgraphic', true);
             model.set('originalBody', model.get('body'));
             model.set('originalInstruction', model.get('instruction'));
@@ -156,10 +156,10 @@ define(function(require) {
                 this.$('.hotgraphic-popup-controls.back').a11y_cntrl_enabled(true);
                 this.$('.hotgraphic-popup-controls.next').a11y_cntrl_enabled(true);
             }
-            var classes = this.model.get("_items")[index]._classes 
+            var classes = this.model.get("_items")[index]._classes
                 ? this.model.get("_items")[index]._classes
                 : '';  // _classes has not been defined
-      
+
             this.$('.hotgraphic-popup').attr('class', 'hotgraphic-popup ' + 'item-' + index + ' ' + classes);
 
         },
@@ -323,7 +323,8 @@ define(function(require) {
             var interactionObject_body = "";
 
             // If reduced text is enabled and selected
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            // TODO this will error is audio extension is not installed
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = itemModel.titleReduced;
                 popupObject_body = itemModel.bodyReduced;
             }
@@ -375,6 +376,7 @@ define(function(require) {
             Adapt.once("notify:closed", _.bind(function() {
                 this.isPopupOpen = false;
                 ///// Audio /////
+                // TODO ideally shouldn't this be handled in audio extension
                 if (this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
                     Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
                 }
@@ -406,7 +408,7 @@ define(function(require) {
             var interactionObject_body = "";
 
             // If reduced text is enabled and selected
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled && Adapt.audio.textSize == 1) {
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled && Adapt.audio.textSize == 1) {
                 popupObject_title = itemModel.titleReduced;
                 popupObject_body = itemModel.bodyReduced;
             }
@@ -422,7 +424,7 @@ define(function(require) {
                     interactionObject_body = "<div class='notify-container'><div class='notify-body'>" + popupObject_body + "</div></div>";
                 }
             }
-            
+
             // Update elements
             $('.notify-popup-title-inner').html(popupObject_title);
             $('.notify-popup-body-inner').html(interactionObject_body);
@@ -460,15 +462,7 @@ define(function(require) {
         // Reduced text
         replaceText: function(value) {
             // If enabled
-            if (this.model.get('_reducedText') && this.model.get('_reducedText')._isEnabled) {
-                // Change component title and body
-                if(value == 0) {
-                    this.$('.component-title-inner').html(this.model.get('displayTitle')).a11y_text();
-                    this.$('.component-body-inner').html(this.model.get('body')).a11y_text();
-                } else {
-                    this.$('.component-title-inner').html(this.model.get('displayTitleReduced')).a11y_text();
-                    this.$('.component-body-inner').html(this.model.get('bodyReduced')).a11y_text();
-                }
+            if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                 // Change each items title and body
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
@@ -484,8 +478,8 @@ define(function(require) {
 
     });
 
-    Adapt.register('hotgraphic', HotGraphic);
+    Adapt.register('hotgraphicAudio', HotGraphicAudio);
 
-    return HotGraphic;
+    return HotGraphicAudio;
 
 });

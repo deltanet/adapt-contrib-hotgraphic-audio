@@ -1,16 +1,17 @@
 {
-  "name": "adapt-contrib-hotgraphic",
+  "name": "adapt-contrib-hotgraphic-audio",
   "version": "2.0.7",
-  "framework": "2.0.4",
+  "framework": "^2.0.4",
   "homepage": "https://github.com/deltanet/adapt-contrib-hotgraphic-audio",
   "issues": "https://github.com/deltanet/adapt-contrib-hotgraphic-audio/issues",
-  "description": "A contributed hot graphic component that enables a user to click on hot spots over an image and display a detailed popup that includes an image with text.",
-  "main": "/js/adapt-contrib-hotgraphic.js",
-  "displayName" : "Hot Graphic",
-  "component" : "hotgraphic",
+  "description": "A contributed hot graphic component that enables a user to click on hot spots over an image and display a detailed popup that includes an image with text. Audio enabled.",
+  "main": "/js/adapt-contrib-hotgraphicAudio.js",
+  "displayName" : "Hot Graphic - Audio",
+  "component" : "hotgraphicAudio",
   "assetFields" : [
     "_graphic.src",
-    "_items[]._graphic.src"
+    "_items[]._graphic.src",
+    "_items[]._audio.src"
   ],
   "keywords": [
     "adapt-plugin",
