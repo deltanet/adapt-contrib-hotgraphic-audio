@@ -106,8 +106,8 @@ define(function(require) {
         },
 
         replaceWithNarrative: function() {
-            if (!Adapt.componentStore.narrative) throw "Narrative not included in build";
-            var Narrative = Adapt.componentStore.narrative;
+            if (!Adapt.componentStore.narrativeAudio) throw "Narrative not included in build";
+            var Narrative = Adapt.componentStore.narrativeAudio;
 
             var model = this.prepareNarrativeModel();
             var newNarrative = new Narrative({ model: model });
@@ -124,7 +124,7 @@ define(function(require) {
 
         prepareNarrativeModel: function() {
             var model = this.model;
-            model.set('_component', 'narrative');
+            model.set('_component', 'narrativeAudio');
             model.set('_wasHotgraphic', true);
             model.set('originalBody', model.get('body'));
             model.set('originalInstruction', model.get('instruction'));
@@ -478,7 +478,7 @@ define(function(require) {
 
     });
 
-    Adapt.register('hotgraphic-audio', HotGraphicAudio);
+    Adapt.register('hotgraphicAudio', HotGraphicAudio);
 
     return HotGraphicAudio;
 
