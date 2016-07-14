@@ -74,6 +74,7 @@ When viewport size changes to the smallest range, this component will behave lik
 
 
 ----------------------------
+<<<<<<< HEAD
 **Version number:**  2.0.8    
 **Framework versions:**  ^2.0.4     
-**Author / maintainer:** Deltanet, forked from [Adapt Core](https://github.com/adaptlearning/adapt-contrib-hotgraphic/)  
+**Author / maintainer:** Deltanet, forked from [Adapt Core](https://github.com/adaptlearning/adapt-contrib-hotgraphic/) 

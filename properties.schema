@@ -9,14 +9,16 @@
       "required": true,
       "default": "Below is a component which allows you to select hot spots over an image. Select a hot spot to trigger a popup that includes an image with display text. Select the close button to close the popup.",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "ariaPoupupLabel": {
       "type": "string",
       "required": true,
       "default": "Hotgraphic popup",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     }
   },
   "properties":{
@@ -33,7 +35,8 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
-      "help": "This is the instruction text"
+      "help": "This is the instruction text",
+      "translatable": true
     },
     "_graphic": {
       "type":"object",
@@ -54,7 +57,8 @@
           "default": "",
           "inputType": "Text",
           "validators": [],
-          "help": "Alternative text for this image"
+          "help": "Alternative text for this image",
+          "translatable": true
         }
       }
     },
@@ -64,7 +68,8 @@
       "default": "",
       "inputType": "TextArea",
       "validators": [],
-      "help": "This body text is displayed on mobile devices when this component turns into a Narrative"
+      "help": "This body text is displayed on mobile devices when this component turns into a Narrative",
+      "translatable": true
     },
     "mobileInstruction": {
       "type":"string",
@@ -72,7 +77,8 @@
       "default": "",
       "inputType": "TextArea",
       "validators": [],
-      "help": "This instruction text is displayed on mobile devices when this component turns into a Narrative"
+      "help": "This instruction text is displayed on mobile devices when this component turns into a Narrative",
+      "translatable": true
     },
     "_hidePagination": {
       "type":"boolean",
@@ -125,7 +131,8 @@
             "default": "",
             "inputType": "Text",
             "validators": [],
-            "help": "Title displayed in the popup"
+            "help": "Title displayed in the popup",
+            "translatable": true
           },
           "titleReduced": {
             "type":"string",
@@ -141,7 +148,8 @@
             "default": "",
             "inputType": "TextArea",
             "validators": ["required"],
-            "help": "Body text displayed in the popup"
+            "help": "Body text displayed in the popup",
+            "translatable": true
           },
           "bodyReduced": {
             "type":"string",
@@ -157,7 +165,8 @@
             "default": "",
             "inputType": "Text",
             "validators": ["required"],
-            "help": "Strapline displayed on mobile version"
+            "help": "Strapline displayed on mobile version",
+            "translatable": true
           },
           "_graphic": {
             "type":"object",
@@ -178,7 +187,8 @@
                 "default": "",
                 "inputType": "Text",
                 "validators": [],
-                "help": "Alternative text for this image"
+                "help": "Alternative text for this image",
+                "translatable": true
               },
               "_classes": {
                 "type":"string",
