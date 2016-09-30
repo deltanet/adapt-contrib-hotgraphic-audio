@@ -46,111 +46,204 @@
 		padding-top: (@icon-size / 2);
 	}
 
+
+
+
+
 	.hotgraphic-popup {
-		display: none;
+        display: none;
+        position: fixed;
+        top: 50%;
+        width:100%;
+        z-index: 550;
+        background-color: @notify-color;
+        color: @notify-text-color;
+		left: 0;
+
+        a {
+             text-decoration: none;
+        }
+
+        @media all and (min-width: @device-width-medium) {
+            max-width: @device-width-medium;
+            left: 50%;
+            margin-left: -(@device-width-medium / 2);
+            border-radius: 8px;
+        }
+    }
+
+    .hotgraphic-popup-inner {
+        position: relative;
+        margin: auto;
+        padding: @notify-padding;
+        padding-bottom: @notify-padding - @button-padding-bottom;
+    }
+
+    .hotgraphic-popup-content {
+        .ie8 & {
+            max-width: @ie8-max-width;
+            margin:0 auto;
+        }
+    }
+
+    .hotgraphic-popup-content-inner {
+        position:relative;
+        padding-left: 0px;
+
+        .dir-rtl & {
+            padding-left: inherit;
+            padding-right: 0px;
+        }
+
+        @media all and (max-width:(@device-width-medium - 1px)) {
+            padding-left: 0px;
+
+            .dir-rtl & {
+                padding-left: inherit;
+                padding-right: 0px;
+            }
+        }
+    }
+
+    .hotgraphic-popup-item {
+        display: none;
+    }
+
+    .hotgraphic-shadow {
+        display: none;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        .dir-rtl & {
+            left:inherit;
+            right:0px;
+        }
+        width: 100%;
+        height: 100%;
+        z-index: 549;
+
+        background-color: @transparency;
+
+        .no-opacity & {
+            background-image: @transparency-fallback-png;
+        }
+    }
+
+    .hotgraphic-popup-title {
+        margin-bottom: @notify-title-padding-bottom;
+        .item-title;
+        text-align: center;
+        font-size: @component-title-font-size;
+    }
+
+	.hotgraphic-popup-body {
+        padding-bottom: @notify-padding-bottom;
+        text-align: left;
 		width: auto;
-		position: absolute;
-		left: 0px;
-		right: 0px;
-		top: 0px;
-		height: auto;
-		margin: 40px;
-		background-color: @background-color;
-		border: @item-border;
-		z-index: 5;
-	}
+		overflow: hidden;
+        @media (max-width: @device-width-medium) {
+            padding-bottom: (@notify-padding-bottom / 3);
+        }
+    }
 
-	.hotgraphic-popup-toolbar {
-		position: relative;
-		background-color: @item-color;
-		height: (@item-padding-top + @item-padding-bottom) + @icon-size;
-	}
+    .hotgraphic-popup-graphic {
+        float: right;
+        padding-bottom: @button-padding-bottom;
+        width: 40%;
+        margin-left: @component-padding;
 
-	.hotgraphic-popup-nav {
-		background-color: @item-color;
-	}
+        .dir-rtl & {
+            float: left;
+            margin-left: 0px;
+            margin-right: @component-padding;
+        }
 
-	.hotgraphic-popup-done {
-		position: absolute;
-		top: 0;
-		right: 0;
-		text-decoration: none;
-		.dir-rtl & {
-			right: inherit;
-			left: 0;
-		}
-		.no-touch &:hover {
-			.hotgraphic-popup-close {
-				color: @button-text-color-hover;
-			}
-		}
-	}
+        @media (max-width: @device-width-medium) {
+            float: none;
+            margin-left: 0px;
+            width: 100%;
+        }
 
-	.hotgraphic-popup-arrow-l,
-	.hotgraphic-popup-arrow-r,
-	.hotgraphic-popup-close {
-		padding: @item-padding;
-		color: @button-text-color;
-	}
+        &.fullwidth {
+            width: 100%;
+			margin-left: 0px;
+        }
 
-	.hotgraphic-popup-count {
-		padding: @item-padding;
-		vertical-align: baseline;
-		color: @item-text-color;
-		float: left;
-		.dir-rtl & {
-			float: right;
-		}
-		span {
-			display: inline-block;
-		}
-	}
+		&.hidden {
+            display: none;
+        }
+    }
 
-	.hotgraphic-popup-controls {
-		float: left;
-		text-decoration: none;
-		.dir-rtl & {
-			float: right;
-		}
-		.no-touch &:hover {
-			.hotgraphic-popup-arrow-l,
-			.hotgraphic-popup-arrow-r {
-				color: @button-text-color-hover;
-			}
-		}
-		&.disabled {
-			visibility: hidden;
-		}
-	}
+    .hotgraphic-popup-buttons {
+        text-align: center;
+        clear: both;
+    }
 
-	.hotgraphic-popup-inner {
-		padding: @item-padding;
-	}
+    .hotgraphic-popup-close {
+        background-color: @notify-button-color;
+        color: @notify-button-text-color;
+        padding: @button-padding-top @button-padding-right+10 @button-padding-bottom @button-padding-left+10;
+        margin-bottom: @button-padding-bottom;
+        text-decoration: none;
+        display:inline-block;
+        border: none;
+        min-width: 100px;
+        .transition-all-colors;
+        .button-text;
 
-	.hotgraphic-item-graphic {
-		width: 50%;
-		float: right;
-		.dir-rtl & {
-			float: left;
-		}
-		text-align: center;
-	}
+        border-radius: @button-radius;
 
-	.hotgraphic-item-graphic-inner{
-		padding-left: @item-padding-left;
-		.dir-rtl & {
-			padding-left: inherit;
-			padding-right: @item-padding-left;
-		}
-	}
+        .no-touch &:hover {
+            background-color: @notify-button-color-hover;
+            color: @notify-button-text-color-hover;
+        }
+    }
 
-	.hotgraphic-item-content {
-		width: 50%;
-		float: left;
-		.dir-rtl & {
-			float: right;
-		}
-	}
+    .hotgraphic-popup-navigation {
+        padding-top: @button-padding-top;
+        clear: both;
+    }
+
+    .hotgraphic-popup-arrow {
+        display: block;
+        width: (@icon-size*2);
+        height: (@icon-size*2);
+        position: absolute;
+        text-decoration: none;
+        background-color: @item-color;
+        border-radius: @button-radius;
+        .no-touch &:hover {
+            background-color: @item-color-hover;
+            .icon {
+                color: @item-text-color-hover;
+            }
+        }
+        .icon {
+            margin: (@icon-size/2);
+            color: @item-text-color;
+        }
+    }
+
+    .hotgraphic-popup-back {
+        visibility: hidden;
+        left: 0;
+        .dir-rtl & {
+            right: inherit;
+            left: 0;
+        }
+    }
+
+    .hotgraphic-popup-next {
+        visibility: hidden;
+        right: 0;
+        .dir-rtl & {
+            left: inherit;
+            right: 0;
+        }
+    }
+
+
+
 
 }
 
