@@ -75,6 +75,7 @@ define(function(require) {
             if (Adapt.device.screenSize != 'large') {
                 this.replaceWithNarrative();
             }
+            $('body').scrollEnable();
         },
 
         inview: function(event, visible, visiblePartX, visiblePartY) {
