@@ -1,52 +1,7 @@
 <div class="hotgraphic-inner component-inner" role="region" aria-label="{{_globals._components._hotgraphic.ariaRegion}}" {{#if _globals._components._hotgraphic.ariaRegion}}tabindex="0"{{/if}}>
   {{> component this}}
   <div class="hotgraphic-widget component-widget {{#if _useGraphicsAsPins}}tile{{else}}pin{{/if}}">
-
     <div class="hotgraphic-graphic">
-
-      <div class="hotgraphic-popup" role="dialog" aria-label="{{_globals._components._hotgraphic.ariaPopupLabel}}">
-
-        <div class="hotgraphic-popup-toolbar component-item-color clearfix">
-          {{#unless _hidePagination}}
-          <div class="hotgraphic-popup-nav component-item-color">
-            <button class="base hotgraphic-popup-controls back" aria-label="{{_globals._accessibility._ariaLabels.previous}}" role="button">
-              <div class="hotgraphic-popup-arrow-l component-item-text-color icon icon-controls-small-left"></div>
-            </button>
-            <div class="hotgraphic-popup-count component-item-text-color">
-              <span class="current">1</span>/<span class="total">3</span>
-            </div>
-            <button class="base hotgraphic-popup-controls next" aria-label="{{_globals._accessibility._ariaLabels.next}}" role="button">
-              <div class="hotgraphic-popup-arrow-r component-item-text-color icon icon-controls-small-right"></div>
-            </button>
-          </div>
-          {{/unless}}
-          <button class="base hotgraphic-popup-done" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}" role="button">
-            <div class="hotgraphic-popup-close component-item-text-color icon icon-cross"></div>
-          </button>
-        </div>
-
-        <div class="hotgraphic-popup-inner clearfix">
-          {{#each _items}}
-          <div class="hotgraphic-item component-item item-{{@index}} {{_classes}}">
-            <div class="hotgraphic-item-graphic">
-              <div class="hotgraphic-item-graphic-inner">
-                <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" tabindex="0"/>
-              </div>
-            </div>
-            <div class="hotgraphic-item-content">
-              <div class="hotgraphic-item-content-inner">
-                <div class="hotgraphic-content-title accessible-text-block" role="heading" aria-level="5" tabindex="0">
-                  {{{title}}}
-                </div>
-                <div class="hotgraphic-content-body">
-                  {{{a11y_text body}}}
-                </div>
-              </div>
-            </div>
-          </div>
-          {{/each}}
-        </div>
-      </div>
       {{#if _useGraphicsAsPins}}
         <div class="hotgraphic-narrative">
           {{#each _items}}
@@ -74,6 +29,51 @@
         {{/each}}
         {{/if}}
       {{/if}}
+      <div class="hotgraphic-popup" role="dialog" aria-label="{{_globals._components._hotgraphic.ariaPopupLabel}}">
+        <div class="hotgraphic-popup-inner">
+          <div class="hotgraphic-popup-content">
+            <div class="hotgraphic-popup-content-inner">
+            {{#each _items}}
+            <div class="hotgraphic-popup-item item-{{@index}} {{_classes}}">
+              {{#if title}}
+              <div class="hotgraphic-popup-title">
+                <div class="hotgraphic-popup-title-inner h5" tabindex="0" role="heading" aria-level="1">
+                  {{{title}}}
+                </div>
+              </div>
+              {{/if}}
+              {{#if _graphic}}
+                <div class="hotgraphic-popup-graphic">
+                  <div class="hotgraphic-popup-graphic-inner">
+                    <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" tabindex="0"/>
+                  </div>
+                </div>
+              {{/if}}
+              {{#if body}}
+                <div class="hotgraphic-popup-body">
+                  <div class="hotgraphic-popup-body-inner">{{{a11y_text body}}}</div>
+                </div>
+              {{/if}}
+            </div>
+            {{/each}}
+            {{#if _canCycleThroughPagination}}
+            <div class="hotgraphic-popup-navigation">
+              <button class="base hotgraphic-popup-arrow hotgraphic-popup-back" role="button" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+                <div class="icon icon-controls-left"></div>
+              </button>
+              <button class="base hotgraphic-popup-arrow hotgraphic-popup-next" role="button" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+                <div class="icon icon-controls-right"></div>
+              </button>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="hotgraphic-popup-buttons">
+          <button class="hotgraphic-popup-close" role="button" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">Close</button>
+        </div>
+      </div>
+    </div>
+    <div class="hotgraphic-shadow"></div>
     </div>
   </div>
 </div>
