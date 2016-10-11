@@ -141,8 +141,6 @@ define(function(require) {
 
             $.a11y_alert("visited");
 
-            this.checkCompletionStatus();
-
             ///// Audio /////
             if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
                 // Trigger audio
