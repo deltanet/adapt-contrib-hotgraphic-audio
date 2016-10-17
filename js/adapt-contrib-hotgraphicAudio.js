@@ -308,8 +308,6 @@ define(function(require) {
           }
 
           this.isPopupOpen = true;
-          Adapt.trigger('popup:opened',  this.$('.hotgraphic-popup-inner'));
-          this.$('.hotgraphic-popup-inner .active').a11y_focus();
           this.setupEscapeKey();
         }
       },
@@ -355,7 +353,7 @@ define(function(require) {
 
           this.isPopupOpen = false;
 
-          Adapt.trigger('popup:closed',  this.$('.hotgraphic-popup-inner'));
+          Adapt.trigger('popup:closed',  this.$('.hotgraphic-popup'));
 
           $('body').scrollEnable();
 
