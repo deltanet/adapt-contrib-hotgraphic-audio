@@ -29,51 +29,6 @@
         {{/each}}
         {{/if}}
       {{/if}}
-      <div class="hotgraphic-popup" role="dialog" aria-label="{{_globals._components._hotgraphic.ariaPopupLabel}}">
-        <div class="hotgraphic-popup-inner">
-          <div class="hotgraphic-popup-content">
-            <div class="hotgraphic-popup-content-inner">
-            {{#each _items}}
-            <div class="hotgraphic-popup-item item-{{@index}} {{_classes}}">
-              {{#if title}}
-              <div class="hotgraphic-popup-title">
-                <div class="hotgraphic-popup-title-inner h5" tabindex="0" role="heading" aria-level="1">
-                  {{{title}}}
-                </div>
-              </div>
-              {{/if}}
-              {{#if _graphic}}
-                <div class="hotgraphic-popup-graphic">
-                  <div class="hotgraphic-popup-graphic-inner">
-                    <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" tabindex="0"/>
-                  </div>
-                </div>
-              {{/if}}
-              {{#if body}}
-                <div class="hotgraphic-popup-body">
-                  <div class="hotgraphic-popup-body-inner">{{{a11y_text body}}}</div>
-                </div>
-              {{/if}}
-            </div>
-            {{/each}}
-            {{#if _canCycleThroughPagination}}
-            <div class="hotgraphic-popup-navigation">
-              <button class="base hotgraphic-popup-arrow hotgraphic-popup-back" role="button" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
-                <div class="icon icon-controls-left"></div>
-              </button>
-              <button class="base hotgraphic-popup-arrow hotgraphic-popup-next" role="button" aria-label="{{_globals._accessibility._ariaLabels.next}}">
-                <div class="icon icon-controls-right"></div>
-              </button>
-            </div>
-            {{/if}}
-          </div>
-        </div>
-        <div class="hotgraphic-popup-buttons">
-          <button class="hotgraphic-popup-close" role="button" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">Close</button>
-        </div>
-      </div>
-    </div>
-    <div class="hotgraphic-shadow"></div>
     </div>
   </div>
 </div>
