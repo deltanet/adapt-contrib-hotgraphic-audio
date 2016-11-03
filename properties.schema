@@ -140,7 +140,8 @@
             "default": "",
             "inputType": "Text",
             "validators": [],
-            "help": "Reduced text title displayed in the popup"
+            "help": "Reduced text title displayed in the popup",
+            "translatable": true
           },
           "body": {
             "type":"string",
@@ -157,7 +158,8 @@
             "default": "",
             "inputType": "TextArea",
             "validators": ["required"],
-            "help": "Reduced text body text displayed in the popup"
+            "help": "Reduced text body text displayed in the popup",
+            "translatable": true
           },
           "strapline": {
             "type":"string",
@@ -217,7 +219,8 @@
             "title": "Pin alternative text",
             "inputType": "Text",
             "validators": [],
-            "help": ""
+            "help": "",
+            "translatable": true
           },
           "_left": {
             "type":"number",
