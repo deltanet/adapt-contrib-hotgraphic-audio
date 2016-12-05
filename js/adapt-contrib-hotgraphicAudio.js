@@ -139,8 +139,10 @@ define(function(require) {
 
             ///// Audio /////
             if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
-                // Trigger audio
-                Adapt.trigger('audio:playAudio', item._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
+              // Reset onscreen id
+              Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
+              // Trigger audio
+              Adapt.trigger('audio:playAudio', item._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
             }
             ///// End of Audio /////
         },
