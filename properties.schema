@@ -145,10 +145,10 @@
           },
           "body": {
             "type":"string",
-            "required":true,
+            "required":false,
             "default": "",
             "inputType": "TextArea",
-            "validators": ["required"],
+            "validators": [],
             "help": "Body text displayed in the popup",
             "translatable": true
           },
@@ -157,7 +157,7 @@
             "required":false,
             "default": "",
             "inputType": "TextArea",
-            "validators": ["required"],
+            "validators": [],
             "help": "Reduced text body text displayed in the popup",
             "translatable": true
           },
@@ -172,15 +172,15 @@
           },
           "_graphic": {
             "type":"object",
-            "required":true,
+            "required":false,
             "title": "Item Graphic",
             "properties":{
               "src": {
                 "type":"string",
-                "required":true,
+                "required":false,
                 "default": "",
                 "inputType": "Asset:image",
-                "validators": ["required"],
+                "validators": [],
                 "help": "Image displayed in the popup"
               },
               "alt": {
