@@ -227,7 +227,6 @@ define(function(require) {
                       body: interactionObject_body+this.interactionNav
                   }
                   Adapt.trigger('notify:popup', interactionObject);
-                  this.setImageSize();
                   // Delay showing the nav arrows until notify has faded in
                   _.delay(_.bind(function() {
                       this.updateNotifyNav(activeItem);
@@ -296,8 +295,6 @@ define(function(require) {
             $('.notify-popup-title-inner').html(popupObject_title);
             $('.notify-popup-body-inner').html(interactionObject_body+this.interactionNav);
 
-            this.setImageSize();
-
             this.setVisited(index);
 
             this.updateNotifyNav(activeItem);
@@ -329,11 +326,6 @@ define(function(require) {
             $('.notify-popup-arrow-l').on('click', _.bind(this.previousItem, this));
             $('.notify-popup-arrow-r').on('click', _.bind(this.nextItem, this));
             //
-        },
-
-        setImageSize: function() {
-          this.imageHeight = $('.notify-container img').height();
-          $('.notify-container').css('min-height',this.imageHeight+'px');
         },
 
         closeNotify: function() {
