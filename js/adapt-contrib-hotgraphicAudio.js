@@ -178,12 +178,22 @@ define(function(require) {
         onItemClicked: function(event) {
             event.preventDefault();
 
-            this.$('.hotgraphic-graphic-pin.active').removeClass('active');
+            if(this.model.get('_useGraphicsAsPins')) {
+              this.$('.hotgraphic-graphic-pin-image.active').removeClass('active');
+            } else {
+              this.$('.hotgraphic-graphic-pin.active').removeClass('active');
+            }
 
             var $currentHotSpot = this.$('.' + $(event.currentTarget).data('id'));
+
             $currentHotSpot.addClass('active');
 
-            var currentIndex = this.$('.hotgraphic-graphic-pin.active').index() - 1;
+            if(this.model.get('_useGraphicsAsPins')) {
+              var currentIndex = this.$('.hotgraphic-graphic-pin-image.active').parent().index();
+            } else {
+              var currentIndex = this.$('.hotgraphic-graphic-pin.active').index() - 1;
+            }
+
             this.setVisited(currentIndex);
 
             var itemModel = this.model.get('_items')[currentIndex];
