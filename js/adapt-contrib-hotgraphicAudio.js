@@ -440,11 +440,11 @@ define(function(require) {
                 // Change each items title and body
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
-                        this.$('.hotgraphic-content-title').eq(i).html(this.model.get('_items')[i].title);
-                        this.$('.hotgraphic-content-body').eq(i).html(this.model.get('_items')[i].body);
-                    } else {
-                        this.$('.hotgraphic-content-title').eq(i).html(this.model.get('_items')[i].titleReduced);
-                        this.$('.hotgraphic-content-body').eq(i).html(this.model.get('_items')[i].bodyReduced);
+                      this.$('.hotgraphic-popup-title-inner').eq(i).html(this.model.get('_items')[i].title);
+                      this.$('.hotgraphic-popup-body-inner').eq(i).html(this.model.get('_items')[i].body);
+                  } else {
+                      this.$('.hotgraphic-popup-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
+                      this.$('.hotgraphic-popup-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced);
                     }
                 }
             }
