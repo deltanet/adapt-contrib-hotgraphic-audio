@@ -1,5 +1,5 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "$ref": "http://localhost/plugins/content/component/model.schema",
@@ -21,7 +21,7 @@
       "translatable": true
     }
   },
-  "properties":{
+  "properties": {
     "_supportedLayout": {
       "type": "string",
       "required": true,
@@ -49,32 +49,41 @@
       "translatable": true
     },
     "_graphic": {
-      "type":"object",
-      "required":false,
+      "type": "object",
+      "required": false,
       "title": "Main hotgraphic",
-      "properties":{
+      "properties": {
         "src": {
-          "type":"string",
-          "required":true,
+          "type": "string",
+          "required": false,
           "default": "",
           "inputType": "Asset:image",
-          "validators": ["required"],
+          "validators": [],
           "help": "This is the image that appears behind the pins"
         },
         "alt": {
-          "type":"string",
-          "required":false,
+          "type": "string",
+          "required": false,
           "default": "",
           "inputType": "Text",
           "validators": [],
           "help": "Alternative text for this image",
           "translatable": true
+        },
+        "attribution": {
+          "type":"string",
+          "required":false,
+          "default": "",
+          "inputType": "Text",
+          "validators": [],
+          "help": "Text to be displayed as an attribution",
+          "translatable": true
         }
       }
     },
     "mobileBody": {
-      "type":"string",
-      "required":false,
+      "type": "string",
+      "required": false,
       "default": "",
       "inputType": "TextArea",
       "validators": [],
@@ -82,22 +91,31 @@
       "translatable": true
     },
     "mobileInstruction": {
-      "type":"string",
-      "required":false,
+      "type": "string",
+      "required": false,
       "default": "",
       "inputType": "Text",
       "validators": [],
       "help": "This instruction text is displayed on mobile devices when this component turns into a Narrative",
       "translatable": true
     },
+    "_hidePagination": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "title": "Hide pagination",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "If enabled, the progress indicator and previous and next links will not be shown on the popup toolbar"
+    },
     "_canCycleThroughPagination": {
-      "type":"boolean",
-      "required":true,
+      "type": "boolean",
+      "required": true,
       "default": false,
       "title": "Cycle through item pagination",
-      "inputType": {"type": "Boolean", "options": [false, true]},
+      "inputType": "Checkbox",
       "validators": [],
-      "help": "If set to 'true', the items in the open popup will be allowed to cycle through continiously"
+      "help": "If enabled, the items in the open popup will be allowed to cycle through continiously"
     },
     "_setCompletionOn": {
       "type":"string",
@@ -110,13 +128,13 @@
       "help": "This value determines when the component registers as complete."
     },
     "_useGraphicsAsPins": {
-      "type":"boolean",
-      "required":true,
+      "type": "boolean",
+      "required": true,
       "default": false,
       "title": "Use graphics as pins",
-      "inputType": {"type": "Boolean", "options": [false, true]},
+      "inputType": "Checkbox",
       "validators": [],
-      "help": "If set to 'true', the main graphic will be hidden and pins will be displayed as images which can be positioned using classes"
+      "help": "If enabled, the main graphic will be hidden and pins will be displayed as images which can be positioned using classes"
     },
     "_useNumbersAsPins": {
       "type":"boolean",
@@ -128,16 +146,16 @@
       "help": "If set to 'true', the pins will be numbered instead of an icon"
     },
     "_items": {
-      "type":"array",
-      "required":true,
+      "type": "array",
+      "required": true,
       "title": "Hot Graphic Pins",
       "items": {
-        "type":"object",
-        "required":true,
-        "properties":{
+        "type": "object",
+        "required": true,
+        "properties": {
           "title": {
-            "type":"string",
-            "required":true,
+            "type": "string",
+            "required": true,
             "default": "",
             "inputType": "Text",
             "validators": [],
@@ -172,8 +190,8 @@
             "translatable": true
           },
           "strapline": {
-            "type":"string",
-            "required":true,
+            "type": "string",
+            "required": true,
             "default": "",
             "inputType": "Text",
             "validators": ["required"],
@@ -184,7 +202,7 @@
             "type":"object",
             "required":false,
             "title": "Item Graphic",
-            "properties":{
+            "properties": {
               "src": {
                 "type":"string",
                 "required":false,
@@ -194,16 +212,25 @@
                 "help": "Image displayed in the popup"
               },
               "alt": {
-                "type":"string",
-                "required":false,
+                "type": "string",
+                "required": false,
                 "default": "",
                 "inputType": "Text",
                 "validators": [],
                 "help": "Alternative text for this image",
                 "translatable": true
               },
-              "_classes": {
+              "attribution": {
                 "type":"string",
+                "required":false,
+                "default": "",
+                "inputType": "Text",
+                "validators": [],
+                "help": "Text to be displayed as an attribution",
+                "translatable": true
+              },
+              "_classes": {
+                "type": "string",
                 "required": false,
                 "default": "",
                 "title": "Classes",
@@ -214,7 +241,7 @@
             }
           },
           "_classes": {
-            "type":"string",
+            "type": "string",
             "required": false,
             "default": "",
             "title": "Classes",
@@ -233,18 +260,18 @@
             "translatable": true
           },
           "_left": {
-            "type":"number",
-            "required":true,
-            "default":0,
+            "type": "number",
+            "required": true,
+            "default": 0,
             "title": "Pin Position - Left",
             "inputType": "Number",
             "validators": ["required", "number"],
             "help": "Left position of pin"
           },
           "_top": {
-            "type":"number",
-            "required":true,
-            "default":0,
+            "type": "number",
+            "required": true,
+            "default": 0,
             "title": "Pin Position - Top",
             "inputType": "Number",
             "validators": ["required", "number"],
