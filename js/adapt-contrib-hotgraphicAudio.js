@@ -198,7 +198,11 @@ define(function(require) {
             if(this.model.get('_useGraphicsAsPins')) {
               var currentIndex = this.$('.hotgraphic-graphic-pin-image.active').parent().index();
             } else {
-              var currentIndex = this.$('.hotgraphic-graphic-pin.active').index() - 1;
+              if(this.model.get('_graphic').attribution) {
+                var currentIndex = this.$('.hotgraphic-graphic-pin.active').index() - 2;
+              } else {
+                var currentIndex = this.$('.hotgraphic-graphic-pin.active').index() - 1;
+              }
             }
 
             this.setVisited(currentIndex);
