@@ -74,9 +74,9 @@ define(function(require) {
 
         reRender: function() {
             if (Adapt.device.screenSize != 'large') {
-                this.replaceWithNarrative();
+              this.closePopup();
+              this.replaceWithNarrative();
             }
-            $('body').scrollEnable();
         },
 
         inview: function(event, visible, visiblePartX, visiblePartY) {
@@ -239,6 +239,7 @@ define(function(require) {
           // Check if item has no graphic - show text fullwidth
           if(itemModel._graphic.src == "") {
             this.$('.item-'+activeItem+ ' > .hotgraphic-popup-graphic').addClass('hidden');
+            this.$('.item-'+activeItem+ ' > .hotgraphic-popup-body').addClass('fullwidth');
           }
         },
 
@@ -350,7 +351,7 @@ define(function(require) {
       },
 
         closePopup: function(event) {
-          event.preventDefault();
+          if (event) event.preventDefault();
 
           if (this.disableAnimation) {
             $('#shadow').addClass("display-none");
@@ -444,11 +445,11 @@ define(function(require) {
                 // Change each items title and body
                 for (var i = 0; i < this.model.get('_items').length; i++) {
                     if(value == 0) {
-                      this.$('.hotgraphic-popup-title-inner').eq(i).html(this.model.get('_items')[i].title);
-                      this.$('.hotgraphic-popup-body-inner').eq(i).html(this.model.get('_items')[i].body);
+                      this.$('.item-'+i).find('.hotgraphic-popup-title-inner').html(this.model.get('_items')[i].title);
+                      this.$('.item-'+i).find('.hotgraphic-popup-body-inner').html(this.model.get('_items')[i].body).a11y_text();
                   } else {
-                      this.$('.hotgraphic-popup-title-inner').eq(i).html(this.model.get('_items')[i].titleReduced);
-                      this.$('.hotgraphic-popup-body-inner').eq(i).html(this.model.get('_items')[i].bodyReduced);
+                      this.$('.item-'+i).find('.hotgraphic-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
+                      this.$('.item-'+i).find('.hotgraphic-popup-body-inner').html(this.model.get('_items')[i].bodyReduced).a11y_text();
                     }
                 }
             }

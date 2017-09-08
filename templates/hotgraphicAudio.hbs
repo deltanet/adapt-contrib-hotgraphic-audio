@@ -48,6 +48,11 @@
                 </div>
               </div>
               {{/if}}
+              {{#if body}}
+                <div class="hotgraphic-popup-body">
+                  <div class="hotgraphic-popup-body-inner">{{{a11y_text body}}}</div>
+                </div>
+              {{/if}}
               {{#if _graphic}}
                 <div class="hotgraphic-popup-graphic">
                   <div class="hotgraphic-popup-graphic-inner">
@@ -56,11 +61,6 @@
                   {{#if _graphic.attribution}}
                     <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
                   {{/if}}
-                </div>
-              {{/if}}
-              {{#if body}}
-                <div class="hotgraphic-popup-body">
-                  <div class="hotgraphic-popup-body-inner">{{{a11y_text body}}}</div>
                 </div>
               {{/if}}
             </div>

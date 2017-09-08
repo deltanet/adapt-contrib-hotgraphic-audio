@@ -124,25 +124,37 @@
 
 	.hotgraphic-popup-body {
 		padding-bottom: @notify-padding-bottom;
+		float: left;
 		text-align: left;
-		width: auto;
+		.dir-rtl & {
+			float: right;
+			text-align: right;
+		}
+		width: 60%;
 		overflow: hidden;
+
 		@media (max-width: @device-width-medium) {
 			padding-bottom: (@notify-padding-bottom / 3);
 		}
+
+		&.fullwidth {
+			width: 100%;
+		}
+
 	}
 
 	.hotgraphic-popup-graphic {
 		float: right;
 		padding-bottom: @button-padding-bottom;
-		width: 40%;
-		margin-left: @component-padding;
+		width: 38%;
+		margin-left: 2%;
 
 		.dir-rtl & {
 			float: left;
 			margin-left: 0;
-			margin-right: @component-padding;
+			margin-right: 2%;
 		}
+
 		@media (max-width: @device-width-medium) {
 			float: none;
 			margin-left: 0;
