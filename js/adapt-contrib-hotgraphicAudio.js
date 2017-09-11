@@ -74,7 +74,9 @@ define(function(require) {
 
         reRender: function() {
             if (Adapt.device.screenSize != 'large') {
-              this.closePopup();
+              if(this.isPopupOpen) {
+                this.closePopup();
+              }
               this.replaceWithNarrative();
             }
         },
