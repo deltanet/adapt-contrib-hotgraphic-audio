@@ -16,7 +16,7 @@ define(function(require) {
             if (Adapt.device.screenSize == 'large') {
                 this.render();
 
-                if (this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+                if (Adapt.audio && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
                     this.replaceText(Adapt.audio.textSize);
                 }
             } else {
@@ -145,6 +145,8 @@ define(function(require) {
             $.a11y_alert("visited");
 
             ///// Audio /////
+            if(!Adapt.audio) return;
+
             if (this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
               // Reset onscreen id
               Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
@@ -265,15 +267,6 @@ define(function(require) {
 
             this.$('.item-'+activeItem).show();
 
-            ///// Audio /////
-            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
-              // Reset onscreen id
-              Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
-              // Trigger audio
-              Adapt.trigger('audio:playAudio', itemModel._audio.src, this.model.get('_id'), this.model.get('_audio')._channel);
-            }
-            ///// End of Audio /////
-
             this.setVisited(activeItem);
 
             this.updatePopupNav(activeItem);
@@ -337,6 +330,8 @@ define(function(require) {
             }
 
             ///// Audio /////
+            if(!Adapt.audio) return;
+
             if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
               // Reset onscreen id
               Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
@@ -376,12 +371,6 @@ define(function(require) {
 
           $('body').scrollEnable();
 
-          ///// Audio /////
-          if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
-              Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
-          }
-          ///// End of Audio /////
-
           this.$('.hotgraphic-popup-item.active').removeClass('active');
 
           this.$('.hotgraphic-popup-back').css('visibility','hidden');
@@ -393,6 +382,13 @@ define(function(require) {
 
           this.isPopupOpen = false;
 
+          ///// Audio /////
+          if(!Adapt.audio) return;
+
+          if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._isEnabled && this.model.has('_audio') && this.model.get('_audio')._isEnabled) {
+              Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+          }
+          ///// End of Audio /////
         },
 
         resizePopup: function() {
@@ -440,22 +436,22 @@ define(function(require) {
           this.closePopup();
       },
 
-        // Reduced text
-        replaceText: function(value) {
-            // If enabled
-            if (Adapt.course.get('_audio') && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
-                // Change each items title and body
-                for (var i = 0; i < this.model.get('_items').length; i++) {
-                    if(value == 0) {
-                      this.$('.item-'+i).find('.hotgraphic-popup-title-inner').html(this.model.get('_items')[i].title);
-                      this.$('.item-'+i).find('.hotgraphic-popup-body-inner').html(this.model.get('_items')[i].body).a11y_text();
-                  } else {
-                      this.$('.item-'+i).find('.hotgraphic-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
-                      this.$('.item-'+i).find('.hotgraphic-popup-body-inner').html(this.model.get('_items')[i].bodyReduced).a11y_text();
-                    }
-                }
-            }
-        }
+      // Reduced text
+      replaceText: function(value) {
+          // If enabled
+          if (Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+              // Change each items title and body
+              for (var i = 0; i < this.model.get('_items').length; i++) {
+                  if(value == 0) {
+                    this.$('.item-'+i).find('.hotgraphic-popup-title-inner').html(this.model.get('_items')[i].title);
+                    this.$('.item-'+i).find('.hotgraphic-popup-body-inner').html(this.model.get('_items')[i].body).a11y_text();
+                } else {
+                    this.$('.item-'+i).find('.hotgraphic-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
+                    this.$('.item-'+i).find('.hotgraphic-popup-body-inner').html(this.model.get('_items')[i].bodyReduced).a11y_text();
+                  }
+              }
+          }
+      }
 
     });
 

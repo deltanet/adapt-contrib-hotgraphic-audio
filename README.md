@@ -78,6 +78,6 @@ guide the learner’s interaction with the component.
 When viewport size changes to the smallest range, this component will behave like a [**Narrative** component](https://github.com/adaptlearning/adapt-contrib-narrative). All information will remain available but formatted as a narrative rather than as hot spots on a graphic.  
 
 ----------------------------
-**Version number:**  2.1.2    
+**Version number:**  2.1.3    
 **Framework versions:**  2+     
 **Author / maintainer:** Deltanet, forked from [Adapt Core](https://github.com/adaptlearning/adapt-contrib-hotgraphic/)
