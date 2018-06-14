@@ -62,7 +62,9 @@ guide the learner’s interaction with the component.
 
 >>**attribution** (string): Optional text to be displayed as an [attribution](https://wiki.creativecommons.org/Best_practices_for_attribution). By default it is displayed below the image. Adjust positioning by modifying CSS. Text can contain HTML tags, e.g., `Copyright © 2015 by <b>Lukasz 'Severiaan' Grela</b>`.
 
->**strapline** (string): This text is displayed when `Adapt.device.screenSize` is `small` (i.e., when viewed on mobile devices). It is presented in a title bar above the image.
+>**strapline** (string): This text is displayed when `Adapt.device.screenSize` is `small` (i.e., when viewed on mobile devices). It is presented in a title bar above the image.  
+
+>**_pinIcon** (string): Class for the icon which must be included in the theme.  
 
 >**_top** (number): Each hot spot must contain **_top** and **_left** coordinates to position them on the hot graphic. Enter the number of pixels this hot spot should be from the top border of the main graphic.
 
@@ -78,6 +80,6 @@ guide the learner’s interaction with the component.
 When viewport size changes to the smallest range, this component will behave like a [**Narrative** component](https://github.com/adaptlearning/adapt-contrib-narrative). All information will remain available but formatted as a narrative rather than as hot spots on a graphic.  
 
 ----------------------------
-**Version number:**  2.1.3    
+**Version number:**  2.2.0    
 **Framework versions:**  2+     
 **Author / maintainer:** Deltanet, forked from [Adapt Core](https://github.com/adaptlearning/adapt-contrib-hotgraphic/)

@@ -198,6 +198,52 @@
             "help": "Strapline displayed on mobile version",
             "translatable": true
           },
+          "_classes": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "Classes",
+            "inputType": "Text",
+            "validators": [],
+            "help": ""
+          },
+          "pinAlt": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "title": "Pin alternative text",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "_pinIcon": {
+            "type": "string",
+            "required": false,
+            "title": "Pin Icon",
+            "default": "icon-pin",
+            "inputType": "Text",
+            "validators": [],
+            "help": "Add a CSS class to show the desired icon."
+          },
+          "_left": {
+            "type": "number",
+            "required": true,
+            "default": 0,
+            "title": "Pin Position - Left",
+            "inputType": "Number",
+            "validators": ["required", "number"],
+            "help": "Left position of pin"
+          },
+          "_top": {
+            "type": "number",
+            "required": true,
+            "default": 0,
+            "title": "Pin Position - Top",
+            "inputType": "Number",
+            "validators": ["required", "number"],
+            "help": "Top position of pin"
+          },
           "_graphic": {
             "type":"object",
             "required": false,
@@ -233,49 +279,12 @@
                 "type": "string",
                 "required": false,
                 "default": "",
-                "title": "Classes",
+                "title": "Graphic Classes",
                 "inputType": "Text",
                 "validators": [],
                 "help": ""
               }
             }
-          },
-          "_classes": {
-            "type": "string",
-            "required": false,
-            "default": "",
-            "title": "Classes",
-            "inputType": "Text",
-            "validators": [],
-            "help": ""
-          },
-          "pinAlt": {
-            "type":"string",
-            "required": false,
-            "default": "",
-            "title": "Pin alternative text",
-            "inputType": "Text",
-            "validators": [],
-            "help": "",
-            "translatable": true
-          },
-          "_left": {
-            "type": "number",
-            "required": true,
-            "default": 0,
-            "title": "Pin Position - Left",
-            "inputType": "Number",
-            "validators": ["required", "number"],
-            "help": "Left position of pin"
-          },
-          "_top": {
-            "type": "number",
-            "required": true,
-            "default": 0,
-            "title": "Pin Position - Top",
-            "inputType": "Number",
-            "validators": ["required", "number"],
-            "help": "Top position of pin"
           },
           "_audio": {
             "type": "object",
