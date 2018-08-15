@@ -30,7 +30,7 @@
           {{/if}}
         {{#each _items}}
           <button class="base hotgraphic-graphic-pin component-item-text-color item-{{@index}} {{#if _isVisited}}visited{{/if}}" data-id="item-{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;" role="button" aria-label="Item {{numbers @index}}. {{title}}.{{#if _isVisited}} {{../../_globals._accessibility._ariaLabels.visited}}.{{/if}}">
-            <div class="hotgraphic-graphic-pin-icon component-item-color icon {{_pinIcon}} item-{{@index}}"></div>
+            <div class="hotgraphic-graphic-pin-icon component-item-color icon {{#if _pinIcon}}{{_pinIcon}}{{else}}icon-pin{{/if}} item-{{@index}}"></div>
           </button>
         {{/each}}
         {{/if}}
@@ -44,13 +44,13 @@
               {{#if title}}
               <div class="hotgraphic-popup-title">
                 <div class="hotgraphic-popup-title-inner h5" tabindex="0" role="heading" aria-level="1">
-                  {{{title}}}
+                  {{{compile title}}}
                 </div>
               </div>
               {{/if}}
               {{#if body}}
                 <div class="hotgraphic-popup-body">
-                  <div class="hotgraphic-popup-body-inner">{{{a11y_text body}}}</div>
+                  <div class="hotgraphic-popup-body-inner">{{{compile_a11y_text body}}}</div>
                 </div>
               {{/if}}
               {{#if _graphic}}
