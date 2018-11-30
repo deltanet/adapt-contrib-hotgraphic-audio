@@ -267,6 +267,15 @@ define(function(require) {
 
             this.$('.item-'+activeItem).show();
 
+            // Update accessibility tabbing focus
+            if (itemModel.title != "") {
+              this.$('.item-'+activeItem).find('.hotgraphic-popup-title-inner').a11y_focus();
+            } else if (itemModel.body != "") {
+              this.$('.item-'+activeItem).find('.hotgraphic-popup-body-inner').a11y_focus();
+            } else if (itemModel._graphic.alt != "") {
+              this.$('.item-'+activeItem).find('img').a11y_focus();
+            }
+
             this.setVisited(activeItem);
 
             this.updatePopupNav(activeItem);

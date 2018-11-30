@@ -72,14 +72,14 @@ guide the learner’s interaction with the component.
 
 ### Accessibility
 
-**Hot Graphic** has two elements assigned a label using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **ariaRegion** and **ariaPoupupLabel**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. Should the label texts need to be customised, they can be found within the **globals** object in [*properties.schema*](https://github.com/adaptlearning/adapt-contrib-hotgraphic-audio/blob/master/properties.schema).   
+**Hot Graphic** has two elements assigned a label using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **ariaRegion** and **ariaPoupupLabel**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. Should the label texts need to be customised, they can be found within the **globals** object in [*properties.schema*](https://github.com/deltanet/adapt-contrib-hotgraphic-audio/blob/master/properties.schema).   
 <div float align=right><a href="#top">Back to Top</a></div>
 
 ## Limitations
 
-When viewport size changes to the smallest range, this component will behave like a [**Narrative** component](https://github.com/adaptlearning/adapt-contrib-narrative). All information will remain available but formatted as a narrative rather than as hot spots on a graphic.  
+When viewport size changes to the smallest range, this component will behave like a [**Narrative** component](https://github.com/deltanet/adapt-contrib-narrative-audio). All information will remain available but formatted as a narrative rather than as hot spots on a graphic.  
 
 ----------------------------
-**Version number:**  2.2.1    
+**Version number:**  2.2.2    
 **Framework versions:**  2+     
 **Author / maintainer:** Deltanet, forked from [Adapt Core](https://github.com/adaptlearning/adapt-contrib-hotgraphic/)
