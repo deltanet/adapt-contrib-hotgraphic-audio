@@ -1,14 +1,14 @@
 define([
     'core/js/adapt',
     'core/js/views/componentView',
-    './hotgraphicPopupView'
-], function(Adapt, ComponentView, HotgraphicPopupView) {
+    './hotgraphicAudioPopupView'
+], function(Adapt, ComponentView, HotgraphicAudioPopupView) {
     'use strict';
 
-    var HotGraphicView = ComponentView.extend({
+    var HotgraphicAudioView = ComponentView.extend({
 
         events: {
-            'click .hotgraphic-graphic-pin': 'onPinClicked'
+            'click .hotgraphicAudio-graphic-pin': 'onPinClicked'
         },
 
         initialize: function() {
@@ -32,6 +32,7 @@ define([
 
         setUpEventListeners: function() {
             this.listenTo(Adapt, 'device:changed', this.reRender);
+            this.listenTo(Adapt, "audio:changeText", this.replaceText);
 
             this.listenTo(this.model.get('_children'), {
                 'change:_isActive': this.onItemsActiveChange,
@@ -46,10 +47,10 @@ define([
         },
 
         replaceWithNarrative: function() {
-            var NarrativeView = Adapt.getViewClass('narrative');
+            var NarrativeAudioView = Adapt.getViewClass('narrativeAudio');
 
             var model = this.prepareNarrativeModel();
-            var newNarrative = new NarrativeView({ model: model });
+            var newNarrative = new NarrativeAudioView({ model: model });
             var $container = $(".component-container", $("." + this.model.get("_parentId")));
 
             newNarrative.reRender();
@@ -62,7 +63,7 @@ define([
         prepareNarrativeModel: function() {
             var model = this.model;
             model.set({
-                '_component': 'narrative',
+                '_component': 'narrativeAudio',
                 '_wasHotgraphic': true,
                 'originalBody': model.get('body'),
                 'originalInstruction': model.get('instruction')
@@ -91,7 +92,7 @@ define([
 
         getItemElement: function(model) {
             var index = model.get('_index');
-            return this.$('.hotgraphic-graphic-pin').filter('[data-index="' + index + '"]');
+            return this.$('.hotgraphicAudio-graphic-pin').filter('[data-index="' + index + '"]');
         },
 
         onItemsVisitedChange: function(model, _isVisited) {
@@ -119,13 +120,17 @@ define([
         preRender: function() {
             if (Adapt.device.screenSize === 'large') {
                 this.render();
+
+                if (Adapt.audio && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+                    this.replaceText(Adapt.audio.textSize);
+                }
             } else {
                 this.reRender();
             }
         },
 
         postRender: function() {
-            this.$('.hotgraphic-widget').imageready(this.setReadyStatus.bind(this));
+            this.$('.hotgraphicAudio-widget').imageready(this.setReadyStatus.bind(this));
             if (this.model.get('_setCompletionOn') === 'inview') {
                 this.setupInviewCompletion('.component-widget');
             }
@@ -146,7 +151,9 @@ define([
 
             this._isPopupOpen = true;
 
-            this.popupView = new HotgraphicPopupView({
+            Adapt.trigger('audio:stopAllChannels');
+
+            this.popupView = new HotgraphicAudioPopupView({
                 model: this.model
             });
 
@@ -155,7 +162,7 @@ define([
                 _isCancellable: true,
                 _showCloseButton: false,
                 _closeOnBackdrop: true,
-                _classes: ' hotgraphic'
+                _classes: ' hotgraphicAudio'
             });
 
             this.listenToOnce(Adapt, {
@@ -166,10 +173,25 @@ define([
         onPopupClosed: function() {
             this.model.getActiveItem().toggleActive();
             this._isPopupOpen = false;
+        },
+
+        replaceText: function(value) {
+            if (Adapt.audio && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+                // Change each items title and body
+                for (var i = 0; i < this.model.get('_items').length; i++) {
+                    if(value == 0) {
+                      this.$('.item-'+i).find('.hotgraphicAudio-popup-title-inner').html(this.model.get('_items')[i].title);
+                      this.$('.item-'+i).find('.hotgraphicAudio-popup-body-inner').html(this.model.get('_items')[i].body);
+                  } else {
+                      this.$('.item-'+i).find('.hotgraphicAudio-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
+                      this.$('.item-'+i).find('.hotgraphicAudio-popup-body-inner').html(this.model.get('_items')[i].bodyReduced);
+                    }
+                }
+            }
         }
 
     });
 
-    return HotGraphicView;
+    return HotgraphicAudioView;
 
 });

@@ -1,130 +1,76 @@
 .hotgraphicAudio-component {
-	.hotgraphic-graphic {
+	.hotgraphicAudio-graphic {
 		position: relative;
 		display: inline-block;
 		width: 100%;
 	}
 
-	.hotgraphic-graphic-pin {
+	.hotgraphicAudio-graphic-pin {
 		display: block;
 		position: absolute;
-		top: 0;
-		left: 0;
-		background-color: @item-text-color;
-		border-radius: 50%;
+		top: 0%;
+		left: 0%;
+		background-color: transparent !important;
 		text-decoration: none;
+		line-height: 0;
+
+		.hotgraphicAudio-graphic-pin-icon {
+			background-color: @item-text-color;
+			border-radius: 50%;
+		}
 
 		&.visited {
-			.hotgraphic-graphic-pin-icon {
+			.hotgraphicAudio-graphic-pin-icon {
 				color: @item-color-visited;
 			}
 		}
 
 		.no-touch &:hover {
-			.hotgraphic-graphic-pin-icon {
+			.hotgraphicAudio-graphic-pin-icon {
 				color: @item-color-hover;
 			}
 		}
 	}
 
-	.hotgraphic-graphic-pin-icon {
-		padding: @item-padding;
+	.hotgraphicAudio-graphic-pin-icon {
 		color: @item-color;
-		font-size: (@icon-size*1.5);
-		width: auto;
-		height: auto;
+		font-size: (@icon-size*2);
+		height: (@icon-size*2);
+		width: (@icon-size*2);
 	}
 
-	.hotgraphic-graphic-pin-text {
+	.hotgraphicAudio-graphic-pin-text {
 		width: (@icon-size*2);
 		height: (@icon-size*2);
 	}
 
-	.hotgraphic-pin-text {
+	.hotgraphicAudio-pin-text {
 		color: @item-text-color;
 		font-size: @icon-size;
 		font-weight: @font-weight-bold;
 		text-align: center;
 		padding-top: (@icon-size / 2);
 	}
+}
 
-	.hotgraphic-popup {
-		display: none;
-		position: fixed;
-		width: 100%;
-		z-index: 550;
-		background-color: @notify-color;
-		color: @notify-text-color;
-		left: 0;
+.hotgraphicAudio-item:not(.active) {
+	display: none;
+}
 
-		a {
-			text-decoration: none;
-		}
+.hotgraphicAudio-popup {
 
-		&.large {
-			display: block;
-			top: 50%;
-		}
+	.notify-popup-title {
+    text-align: center;
+    padding-right: 0 !important;
+  }
 
-		&.small {
-			display: block;
-			height: 100%;
-			top: 0;
-			overflow-y: scroll;
-			-webkit-overflow-scrolling: touch;
-		}
-		@media all and (min-width: @device-width-medium) {
-			max-width: @device-width-medium;
-			left: 50%;
-			margin-left: -(@device-width-medium / 2);
-			border-radius: 8px;
-		}
+	.notify-popup-buttons {
+		margin-top: 0 !important;
 	}
 
-	.hotgraphic-popup-inner {
-		position: relative;
-		margin: auto;
-		padding: @notify-padding @notify-padding @notify-padding - @button-padding-bottom;
-	}
-
-	.hotgraphic-popup-content {
-		.ie8 & {
-			max-width: @ie8-max-width;
-			margin: 0 auto;
-		}
-	}
-
-	.hotgraphic-popup-content-inner {
-		position: relative;
-		padding-left: 0;
-
-		.dir-rtl & {
-			padding-left: inherit;
-			padding-right: 0;
-		}
-		@media all and (max-width:(@device-width-medium - 1px)) {
-			padding-left: 0;
-
-			.dir-rtl & {
-				padding-left: inherit;
-				padding-right: 0;
-			}
-		}
-	}
-
-	.hotgraphic-popup-item {
-		display: none;
-	}
-
-	.hotgraphic-popup-title {
-		margin-bottom: @notify-title-padding-bottom;
-		.item-title;
-		text-align: center;
-		font-size: @component-title-font-size;
-	}
-
-	.hotgraphic-popup-body {
+	.hotgraphicAudio-popup-body {
 		padding-bottom: @notify-padding-bottom;
+		font-size: @body-text-font-size;
 		float: left;
 		text-align: left;
 		.dir-rtl & {
@@ -135,6 +81,7 @@
 		overflow: hidden;
 
 		@media (max-width: @device-width-medium) {
+			width: 100%;
 			padding-bottom: (@notify-padding-bottom / 3);
 		}
 
@@ -144,7 +91,7 @@
 
 	}
 
-	.hotgraphic-popup-graphic {
+	.hotgraphicAudio-popup-graphic {
 		float: right;
 		padding-bottom: @button-padding-bottom;
 		width: 38%;
@@ -172,72 +119,47 @@
 		}
 	}
 
-	.hotgraphic-popup-buttons {
-		text-align: center;
+	.hotgraphicAudio-popup-nav {
+		margin-top: @button-padding-top;
 		clear: both;
 	}
 
-	.hotgraphic-popup-close {
-		background-color: @notify-button-color;
-		color: @notify-button-text-color;
-		padding: @button-padding-top @button-padding-right+10 @button-padding-bottom @button-padding-left+10;
-		margin-bottom: @button-padding-bottom;
-		text-decoration: none;
-		display: inline-block;
-		border: none;
-		min-width: 100px;
-		.transition-all-colors;
-		.button-text;
-
-		.no-touch &:hover {
-			background-color: @notify-button-color-hover;
-			color: @notify-button-text-color-hover;
-		}
-	}
-
-	.hotgraphic-popup-navigation {
-		padding-top: @button-padding-top;
-		clear: both;
-	}
-
-	.hotgraphic-popup-arrow {
+	.hotgraphicAudio-popup-controls {
 		display: block;
-		width: (@icon-size*2);
-		height: (@icon-size*2);
-		position: absolute;
-		text-decoration: none;
-		background-color: @item-color;
-		visibility: hidden;
-
-		.no-touch &:hover {
-			background-color: @item-color-hover;
-
-			.icon {
-				color: @item-text-color-hover;
-			}
-		}
+	  width: (@icon-size*2);
+	  height: (@icon-size*2);
+	  position: absolute;
+	  text-decoration: none;
+	  background-color: @notify-button-color;
 
 		.icon {
 			margin: (@icon-size/2);
-			color: @item-text-color;
+	    color: @notify-button-text-color;
 		}
+
+	  .no-touch &:hover {
+			background-color: @notify-button-color-hover;
+	    .icon {
+				color: @notify-button-text-color-hover;
+	    }
+		}
+
+		&.disabled {
+			visibility: hidden;
+    }
 	}
 
-	.hotgraphic-popup-back {
-		visibility: hidden;
-		left: 0;
-
-		.dir-rtl & {
+	.back {
+	  left: 0;
+	  .dir-rtl & {
 			left: inherit;
 			right: 0;
 		}
 	}
 
-	.hotgraphic-popup-next {
-		visibility: hidden;
-		right: 0;
-
-		.dir-rtl & {
+	.next {
+	  right: 0;
+	  .dir-rtl & {
 			right: inherit;
 			left: 0;
 		}
@@ -250,12 +172,13 @@
 
 }
 // Hotgraphic Narrative
-.hotgraphic-narrative {
+
+.hotgraphicAudio-narrative {
 	position: relative;
 	max-height: 500px;
 	height: 500px;
 
-	.hotgraphic-graphic-pin {
+	.hotgraphicAudio-graphic-pin {
 		border-radius: 0;
 		position: absolute;
 		display: block;
@@ -267,7 +190,7 @@
 		transition: background-size 0.4s;
 		overflow: hidden;
 
-		.hotgraphic-graphic-pin-image {
+		.hotgraphicAudio-graphic-pin-image {
 			display: block;
 			width: 100%;
 			height: 100%;
@@ -288,10 +211,9 @@
 		}
 
 		&:hover {
-			.hotgraphic-graphic-pin-image {
+			.hotgraphicAudio-graphic-pin-image {
 				-webkit-transform: scale(1.1);
 				transform: scale(1.1);
-
 				&:before {
 					background: fadeout(@foreground-color, 100%);
 				}

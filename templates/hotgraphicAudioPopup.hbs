@@ -1,0 +1,43 @@
+<div class="hotgraphicAudio-popup-inner clearfix">
+    {{#each _items}}
+    <div class="hotgraphicAudio-item component-item clearfix {{#if _isVisited}}visited{{/if}} {{#if _isActive}}active{{/if}} {{_classes}}" data-index={{@index}}>
+        {{#if title}}
+        <div id="notify-heading" class="notify-popup-title">
+            <div class="notify-popup-title-inner h5" role="heading" aria-level="1">
+                {{{compile title}}}
+            </div>
+        </div>
+        {{/if}}
+        {{#if body}}
+          <div class="hotgraphicAudio-popup-body">
+            <div class="hotgraphicAudio-popup-body-inner">{{{compile body}}}</div>
+          </div>
+        {{/if}}
+        {{#if _graphic}}
+          <div class="hotgraphicAudio-popup-graphic">
+            <div class="hotgraphicAudio-popup-graphic-inner">
+              <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}"/>
+            </div>
+            {{#if _graphic.attribution}}
+              <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
+            {{/if}}
+          </div>
+        {{/if}}
+        </div>
+    </div>
+    {{/each}}
+    {{#if _canCycleThroughPagination}}
+    <div class="hotgraphicAudio-popup-nav">
+      <button class="base hotgraphicAudio-popup-controls back" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+        <div class="icon icon-controls-left"></div>
+      </button>
+      <button class="base hotgraphicAudio-popup-controls next" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+        <div class="icon icon-controls-right"></div>
+      </button>
+    </div>
+    {{/if}}
+</div>
+<div class="notify-popup-buttons">
+    <button class="notify-popup-button hotgraphicAudio-close-button" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">{{{close}}}</button>
+</div>
+{{a11y_wrap_focus}}

@@ -11,15 +11,6 @@
       "inputType": "Text",
       "validators": [],
       "translatable": true
-    },
-    "popupPagination": {
-      "type": "string",
-      "required": true,
-      "default": "{{itemNumber}} / {{totalItems}}",
-      "inputType": "Text",
-      "validators": [],
-      "help": "This is the aria label for each item. Use {{itemNumber}} and {{totalItems}} in your text to tell the user which item they are viewing and how many items there are in total.",
-      "translatable": true
     }
   },
   "properties": {
@@ -36,7 +27,21 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
+      "help": "This is the instruction text",
       "translatable": true
+    },
+    "_setCompletionOn": {
+      "type": "string",
+      "required": false,
+      "default": "allItems",
+      "title": "Set completion on:",
+      "enum": ["inview", "allItems"],
+      "inputType": {
+        "type": "Select",
+        "options": ["inview", "allItems"]
+      },
+      "validators": [],
+      "help": "Whether completion is based on the learner having viewed all the items - or just having viewed the component"
     },
     "close": {
       "type": "string",
@@ -67,7 +72,7 @@
           "default": "",
           "inputType": "Text",
           "validators": [],
-          "help": "Alternative text for the image",
+          "help": "Alternative text for this image",
           "translatable": true
         },
         "attribution": {
@@ -99,15 +104,6 @@
       "help": "This instruction text is displayed on mobile devices when this component turns into a Narrative",
       "translatable": true
     },
-    "_hidePagination": {
-      "type": "boolean",
-      "required": true,
-      "default": false,
-      "title": "Hide pagination",
-      "inputType": "Checkbox",
-      "validators": [],
-      "help": "If enabled, the progress indicator and previous and next links will not be shown on the popup toolbar"
-    },
     "_canCycleThroughPagination": {
       "type": "boolean",
       "required": true,
@@ -115,17 +111,7 @@
       "title": "Cycle through item pagination",
       "inputType": "Checkbox",
       "validators": [],
-      "help": "If enabled, the popup navigation buttons will cycle continuously through the popup items (i.e. clicking next whilst on the last item will cause the first item to be shown."
-    },
-    "_setCompletionOn": {
-      "type":"string",
-      "required":true,
-      "enum": ["allItems", "inview"],
-      "default": "allItems",
-      "title": "Set completion event",
-      "inputType": {"type": "Select", "options":["allItems", "inview"]},
-      "validators": ["required"],
-      "help": "This value determines when the component registers as complete."
+      "help": "If enabled, the items in the open popup will be allowed to cycle through continiously"
     },
     "_useGraphicsAsPins": {
       "type": "boolean",
@@ -195,7 +181,7 @@
             "default": "",
             "inputType": "Text",
             "validators": ["required"],
-            "help": "Strapline - displayed on mobile version only",
+            "help": "Strapline displayed on mobile version",
             "translatable": true
           },
           "_classes": {
@@ -263,7 +249,7 @@
                 "default": "",
                 "inputType": "Text",
                 "validators": [],
-                "help": "Alternative text for the popup image",
+                "help": "Alternative text for this image",
                 "translatable": true
               },
               "attribution": {
@@ -272,7 +258,7 @@
                 "default": "",
                 "inputType": "Text",
                 "validators": [],
-                "help": "Text to be displayed as an attribution for the popup image",
+                "help": "Text to be displayed as an attribution",
                 "translatable": true
               },
               "_classes": {
@@ -282,8 +268,7 @@
                 "title": "Graphic Classes",
                 "inputType": "Text",
                 "validators": [],
-                "help": "Alternative text for this image",
-                "translatable": true
+                "help": ""
               }
             }
           },

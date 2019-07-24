@@ -3,13 +3,13 @@ define([
 ], function(Adapt) {
     'use strict';
 
-    var HotgraphicPopupView = Backbone.View.extend({
+    var HotgraphicAudioPopupView = Backbone.View.extend({
 
-        className: 'hotgraphic-popup',
+        className: 'hotgraphicAudio-popup',
 
         events: {
-            'click .hotgraphic-popup-done': 'closePopup',
-            'click .hotgraphic-popup-controls': 'onControlClick'
+            'click .hotgraphicAudio-close-button': 'closePopup',
+            'click .hotgraphicAudio-popup-controls': 'onControlClick'
         },
 
         initialize: function() {
@@ -23,19 +23,19 @@ define([
 
         onOpened: function() {
             this.applyNavigationClasses(this.model.getActiveItem().get('_index'));
-            this.updatePageCount();
             this.handleTabs();
+            this.playAudio(this.model.getActiveItem().get('_index'));
         },
 
         applyNavigationClasses: function (index) {
             var itemCount = this.model.get('_items').length;
             var canCycleThroughPagination = this.model.get('_canCycleThroughPagination');
 
-            var shouldEnableBack = index > 0 || canCycleThroughPagination;
-            var shouldEnableNext = index < itemCount - 1 || canCycleThroughPagination;
-            var $controls = this.$('.hotgraphic-popup-controls');
+            var shouldEnableBack = index > 0 && canCycleThroughPagination;
+            var shouldEnableNext = index < itemCount - 1 && canCycleThroughPagination;
+            var $controls = this.$('.hotgraphicAudio-popup-controls');
 
-            this.$('hotgraphic-popup-nav')
+            this.$('hotgraphicAudio-popup-nav')
                 .toggleClass('first', !shouldEnableBack)
                 .toggleClass('last', !shouldEnableNext);
 
@@ -43,44 +43,34 @@ define([
             $controls.filter('.next').a11y_cntrl_enabled(shouldEnableNext);
         },
 
-        updatePageCount: function() {
-            var template = Adapt.course.get("_globals")._components._hotgraphic.popupPagination;
-            var labelText = Handlebars.compile(template)({
-                itemNumber: this.model.getActiveItem().get('_index') + 1,
-                totalItems: this.model.get("_items").length
-            });
-            this.$('.hotgraphic-popup-count').html(labelText);
-        },
-
         handleTabs: function() {
-            this.$('.hotgraphic-popup-inner').a11y_on(false);
-            this.$('.hotgraphic-popup-inner .active').a11y_on(true);
+            this.$('.hotgraphicAudio-popup-inner').a11y_on(false);
+            this.$('.hotgraphicAudio-popup-inner .active').a11y_on(true);
         },
 
         onItemsActiveChange: function(item, _isActive) {
             if (!_isActive) return;
 
             var index = item.get('_index');
-            this.updatePageCount();
             this.handleTabs();
             this.applyItemClasses(index);
             this.handleFocus(index);
         },
 
         applyItemClasses: function(index) {
-            this.$('.hotgraphic-item.active').removeClass('active');
-            this.$('.hotgraphic-item').filter('[data-index="' + index + '"]').addClass('active');
+            this.$('.hotgraphicAudio-item.active').removeClass('active');
+            this.$('.hotgraphicAudio-item').filter('[data-index="' + index + '"]').addClass('active');
         },
 
         handleFocus: function(index) {
-            this.$('.hotgraphic-popup-inner .active').a11y_focus();
+            this.$('.hotgraphicAudio-popup-inner .active').a11y_focus();
             this.applyNavigationClasses(index);
         },
 
         onItemsVisitedChange: function(item, _isVisited) {
             if (!_isVisited) return;
 
-            this.$('.hotgraphic-item')
+            this.$('.hotgraphicAudio-item')
                 .filter('[data-index="' + item.get('_index') + '"]')
                 .addClass('visited');
         },
@@ -88,7 +78,7 @@ define([
         render: function() {
             var data = this.model.toJSON();
             data.view = this;
-            var template = Handlebars.templates['hotgraphicPopup'];
+            var template = Handlebars.templates['hotgraphicAudioPopup'];
             this.$el.html(template(data));
         },
 
@@ -105,6 +95,8 @@ define([
             if (index !== -1) {
                 this.setItemState(index);
             }
+
+            this.playAudio(index);
         },
 
         getNextIndex: function(direction) {
@@ -129,10 +121,19 @@ define([
             var nextItem = this.model.getItem(index);
             nextItem.toggleActive();
             nextItem.toggleVisited(true);
+        },
+
+        playAudio: function(index) {
+          var currentItem = this.model.getItem(index);
+
+          if (Adapt.audio && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+            Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
+            Adapt.trigger('audio:playAudio', currentItem.get('_audio').src, this.model.get('_id'), this.model.get('_audio')._channel);
+          }
         }
 
     });
 
-    return HotgraphicPopupView;
+    return HotgraphicAudioPopupView;
 
 });
