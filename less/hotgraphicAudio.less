@@ -15,41 +15,43 @@
 		line-height: 0;
 
 		.hotgraphicAudio-graphic-pin-icon {
+			font-size: (@icon-size*2);
+			height: (@icon-size*2);
+			width: (@icon-size*2);
+			color: @item-color;
 			background-color: @item-text-color;
 			border-radius: 50%;
 		}
 
+		.hotgraphicAudio-graphic-pin-text {
+			width: (@icon-size*2);
+			height: (@icon-size*2);
+			color: @item-color;
+			background-color: @item-text-color;
+			border-radius: 50%;
+		}
+
+		.hotgraphicAudio-pin-text {
+			font-size: @icon-size;
+			font-weight: @font-weight-bold;
+			text-align: center;
+			padding-top: (@icon-size / 2);
+			line-height: 100%;
+		}
+
 		&.visited {
-			.hotgraphicAudio-graphic-pin-icon {
+			.hotgraphicAudio-graphic-pin-icon,
+			.hotgraphicAudio-graphic-pin-text {
 				color: @item-color-visited;
 			}
 		}
 
 		.no-touch &:hover {
-			.hotgraphicAudio-graphic-pin-icon {
+			.hotgraphicAudio-graphic-pin-icon,
+			.hotgraphicAudio-graphic-pin-text {
 				color: @item-color-hover;
 			}
 		}
-	}
-
-	.hotgraphicAudio-graphic-pin-icon {
-		color: @item-color;
-		font-size: (@icon-size*2);
-		height: (@icon-size*2);
-		width: (@icon-size*2);
-	}
-
-	.hotgraphicAudio-graphic-pin-text {
-		width: (@icon-size*2);
-		height: (@icon-size*2);
-	}
-
-	.hotgraphicAudio-pin-text {
-		color: @item-text-color;
-		font-size: @icon-size;
-		font-weight: @font-weight-bold;
-		text-align: center;
-		padding-top: (@icon-size / 2);
 	}
 }
 
