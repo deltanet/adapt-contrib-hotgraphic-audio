@@ -50,12 +50,12 @@ define([
             var NarrativeAudioView = Adapt.getViewClass('narrativeAudio');
 
             var model = this.prepareNarrativeModel();
-            var newNarrative = new NarrativeAudioView({ model: model });
+            var newNarrativeAudio = new NarrativeAudioView({ model: model });
             var $container = $(".component-container", $("." + this.model.get("_parentId")));
 
-            newNarrative.reRender();
-            newNarrative.setupNarrative();
-            $container.append(newNarrative.$el);
+            newNarrativeAudio.reRender();
+            newNarrativeAudio.setupNarrative();
+            $container.append(newNarrativeAudio.$el);
             Adapt.trigger('device:resize');
             _.defer(this.remove.bind(this));
         },
