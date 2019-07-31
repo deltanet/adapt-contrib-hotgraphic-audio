@@ -9,12 +9,12 @@
         </div>
         {{/if}}
         {{#if body}}
-          <div class="hotgraphicAudio-popup-body">
+          <div class="hotgraphicAudio-popup-body{{#unless _graphic}} fullwidth{{/unless}}">
             <div class="hotgraphicAudio-popup-body-inner">{{{compile body}}}</div>
           </div>
         {{/if}}
         {{#if _graphic}}
-          <div class="hotgraphicAudio-popup-graphic">
+          <div class="hotgraphicAudio-popup-graphic{{#unless body}} fullwidth{{/unless}}">
             <div class="hotgraphicAudio-popup-graphic-inner">
               <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}"/>
             </div>
