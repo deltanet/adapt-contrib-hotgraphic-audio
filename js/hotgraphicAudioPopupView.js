@@ -44,13 +44,12 @@ define([
         },
 
         handleTabs: function() {
-            this.$('.hotgraphicAudio-popup-inner').a11y_on(false);
-            this.$('.hotgraphicAudio-popup-inner .active').a11y_on(true);
+            this.$('.hotgraphicAudio-item:not(.active) *').a11y_on(false);
+            this.$('.hotgraphicAudio-item.active *').a11y_on(true);
         },
 
         onItemsActiveChange: function(item, _isActive) {
             if (!_isActive) return;
-
             var index = item.get('_index');
             this.handleTabs();
             this.applyItemClasses(index);
@@ -58,8 +57,10 @@ define([
         },
 
         applyItemClasses: function(index) {
-            this.$('.hotgraphicAudio-item.active').removeClass('active');
-            this.$('.hotgraphicAudio-item').filter('[data-index="' + index + '"]').addClass('active');
+            this.$('.hotgraphicAudio-item[data-index="' + index + '"]').addClass('active').removeAttr('aria-hidden');
+            this.$('.hotgraphicAudio-item[data-index="' + index + '"] .hotgraphicAudio-content-title').attr("id", "notify-heading");
+            this.$('.hotgraphicAudio-item:not([data-index="' + index + '"])').removeClass('active').attr('aria-hidden', 'true');
+            this.$('.hotgraphicAudio-item:not([data-index="' + index + '"]) .hotgraphicAudio-content-title').removeAttr("id");
         },
 
         handleFocus: function(index) {
