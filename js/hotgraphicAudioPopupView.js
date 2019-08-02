@@ -97,6 +97,8 @@ define([
             }
 
             this.playAudio(index);
+
+            Adapt.trigger('notify:resize');
         },
 
         getNextIndex: function(direction) {
