@@ -1,40 +1,41 @@
 <div class="hotgraphicAudio-inner component-inner">
   {{> component this}}
-  <div class="hotgraphicAudio-widget component-widget {{#if _useGraphicsAsPins}}tile{{else}}pin{{/if}}">
+  <div class="hotgraphicAudio-widget component-widget {{#unless _useGraphicsAsPins}}pin{{else}}tile{{/unless}}">
     <div class="hotgraphicAudio-graphic"{{#unless _useGraphicsAsPins}} role="list"{{/unless}}>
-      {{#if _useGraphicsAsPins}}
+      {{#unless _useGraphicsAsPins}}
+        <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" />
+        {{#if _graphic.attribution}}
+          <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
+        {{/if}}
+        {{#each _items}}
+          <div class="hotgraphicAudio-graphic-pin-list-item" role="listitem">
+            {{#if ../_useNumbersAsPins}}
+              <button class="base hotgraphicAudio-graphic-pin component-item-text-color {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;">
+                <span class="aria-label">{{title}}.{{#if _isVisited}} {{../_globals._accessibility._ariaLabels.visited}}.{{/if}}</span>
+                <div class="hotgraphicAudio-graphic-pin-text component-item-color item-{{@index}}">
+                  <div class="hotgraphicAudio-pin-text">{{math @index "+" 1}}</div>
+                </div>
+              </button>
+            {{else}}
+              <button class="base hotgraphicAudio-graphic-pin component-item-text-color item-{{@index}} {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;">
+                <span class="aria-label">{{title}}.{{#if _isVisited}} {{../_globals._accessibility._ariaLabels.visited}}.{{/if}}</span>
+                <div class="hotgraphicAudio-graphic-pin-icon component-item-color icon {{#if _pinIcon}}{{_pinIcon}}{{else}}icon-pin{{/if}} item-{{@index}}"></div>
+              </button>
+            {{/if}}
+          </div>
+        {{/each}}
+      {{else}}
         <div class="hotgraphicAudio-narrative" role="list">
           {{#each _items}}
-          <button role="listitem" class="base hotgraphicAudio-graphic-pin component-item-text-color {{#if _isVisited}}visited{{/if}} hotgraphicAudio-graphic-pin-{{@index}} {{#if _graphic._classes}}{{_graphic._classes}}{{/if}}" data-index="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;" aria-label="{{title}}.{{#if _isVisited}} {{../_globals._accessibility._ariaLabels.visited}}.{{/if}}">
-            <div class="hotgraphicAudio-graphic-pin-image component-item-color item-{{@index}}" style="background-image: url({{_graphic.src}})"></div>
-          </button>
+            <div class="hotgraphicAudio-graphic-pin-list-item" role="listitem">
+              <button class="base hotgraphicAudio-graphic-pin component-item-text-color {{#if _isVisited}}visited{{/if}} hotgraphicAudio-graphic-pin-{{@index}} {{#if _graphic._classes}}{{_graphic._classes}}{{/if}}" data-index="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;">
+                <span class="aria-label">{{title}}.{{#if _isVisited}} {{../_globals._accessibility._ariaLabels.visited}}.{{/if}}</span>
+                <div class="hotgraphicAudio-graphic-pin-image component-item-color item-{{@index}}" style="background-image: url({{_graphic.src}})"></div>
+              </button>
+            </div>
           {{/each}}
         </div>
-      {{else}}
-        {{#if _useNumbersAsPins}}
-          <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" />
-          {{#if _graphic.attribution}}
-            <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
-          {{/if}}
-        {{#each _items}}
-          <button class="base hotgraphicAudio-graphic-pin component-item-text-color {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;" aria-label="{{title}}.{{#if _isVisited}} {{../_globals._accessibility._ariaLabels.visited}}.{{/if}}">
-            <div class="hotgraphicAudio-graphic-pin-text component-item-color item-{{@index}}">
-              <div class="hotgraphicAudio-pin-text">{{math @index "+" 1}}</div>
-            </div>
-          </button>
-        {{/each}}
-        {{else}}
-          <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}" />
-          {{#if _graphic.attribution}}
-            <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
-          {{/if}}
-        {{#each _items}}
-          <button class="base hotgraphicAudio-graphic-pin component-item-text-color item-{{@index}} {{#if _isVisited}}visited{{/if}}" data-index="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;" aria-label="{{title}}.{{#if _isVisited}} {{../_globals._accessibility._ariaLabels.visited}}.{{/if}}">
-            <div class="hotgraphicAudio-graphic-pin-icon component-item-color icon {{#if _pinIcon}}{{_pinIcon}}{{else}}icon-pin{{/if}} item-{{@index}}"></div>
-          </button>
-        {{/each}}
-        {{/if}}
-      {{/if}}
+      {{/unless}}
     </div>
   </div>
 </div>

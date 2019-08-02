@@ -1,17 +1,19 @@
 <div class="hotgraphicAudio-popup-inner clearfix">
     {{#each _items}}
-    <div class="hotgraphicAudio-item component-item clearfix {{#if _isVisited}}visited{{/if}} {{#if _isActive}}active{{/if}} {{_classes}}" data-index={{@index}}>
+    <div class="hotgraphicAudio-item component-item clearfix {{#if _isVisited}}visited{{/if}} {{#if _isActive}}active{{/if}} {{_classes}}" {{#unless _isActive}} aria-hidden="true"{{/unless}} data-index={{@index}}>
         {{#if title}}
-        <div id="notify-heading" class="notify-popup-title">
+        <div{{#if _isActive}} id="notify-heading"{{/if}} class="notify-popup-title" {{a11y_attrs_heading 'componentItem'}}>
             <div class="notify-popup-title-inner h5" role="heading" aria-level="1">
                 {{{compile title}}}
             </div>
         </div>
         {{/if}}
         {{#if body}}
-          <div class="hotgraphicAudio-popup-body{{#unless _graphic}} fullwidth{{/unless}}">
-            <div class="hotgraphicAudio-popup-body-inner">{{{compile body}}}</div>
-          </div>
+        <div class="hotgraphicAudio-popup-body{{#unless _graphic}} fullwidth{{/unless}}">
+            <div class="hotgraphicAudio-popup-body-inner">
+                {{{compile body}}}
+            </div>
+        </div>
         {{/if}}
         {{#if _graphic}}
           <div class="hotgraphicAudio-popup-graphic{{#unless body}} fullwidth{{/unless}}">
