@@ -58,9 +58,9 @@ define([
 
         applyItemClasses: function(index) {
             this.$('.hotgraphicAudio-item[data-index="' + index + '"]').addClass('active').removeAttr('aria-hidden');
-            this.$('.hotgraphicAudio-item[data-index="' + index + '"] .hotgraphicAudio-content-title').attr("id", "notify-heading");
+            this.$('.hotgraphicAudio-item[data-index="' + index + '"] .notify-popup-title').attr("id", "notify-heading");
             this.$('.hotgraphicAudio-item:not([data-index="' + index + '"])').removeClass('active').attr('aria-hidden', 'true');
-            this.$('.hotgraphicAudio-item:not([data-index="' + index + '"]) .hotgraphicAudio-content-title').removeAttr("id");
+            this.$('.hotgraphicAudio-item:not([data-index="' + index + '"]) .notify-popup-title').removeAttr("id");
         },
 
         handleFocus: function(index) {
