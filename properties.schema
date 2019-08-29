@@ -7,15 +7,7 @@
     "ariaRegion": {
       "type": "string",
       "required": true,
-      "default": "Below is a component which allows you to select hot spots over an image. Select a hot spot to trigger a popup that includes an image with display text. Select the close button to close the popup.",
-      "inputType": "Text",
-      "validators": [],
-      "translatable": true
-    },
-    "ariaPopupLabel": {
-      "type": "string",
-      "required": true,
-      "default": "Hotgraphic popup",
+      "default": "Image with selectable areas. Select each button to show more information.",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -37,6 +29,19 @@
       "validators": [],
       "help": "This is the instruction text",
       "translatable": true
+    },
+    "_setCompletionOn": {
+      "type": "string",
+      "required": false,
+      "default": "allItems",
+      "title": "Set completion on:",
+      "enum": ["inview", "allItems"],
+      "inputType": {
+        "type": "Select",
+        "options": ["inview", "allItems"]
+      },
+      "validators": [],
+      "help": "Whether completion is based on the learner having viewed all the items - or just having viewed the component"
     },
     "close": {
       "type": "string",
@@ -99,15 +104,6 @@
       "help": "This instruction text is displayed on mobile devices when this component turns into a Narrative",
       "translatable": true
     },
-    "_hidePagination": {
-      "type": "boolean",
-      "required": true,
-      "default": false,
-      "title": "Hide pagination",
-      "inputType": "Checkbox",
-      "validators": [],
-      "help": "If enabled, the progress indicator and previous and next links will not be shown on the popup toolbar"
-    },
     "_canCycleThroughPagination": {
       "type": "boolean",
       "required": true,
@@ -116,16 +112,6 @@
       "inputType": "Checkbox",
       "validators": [],
       "help": "If enabled, the items in the open popup will be allowed to cycle through continiously"
-    },
-    "_setCompletionOn": {
-      "type":"string",
-      "required":true,
-      "enum": ["allItems", "inview"],
-      "default": "allItems",
-      "title": "Set completion event",
-      "inputType": {"type": "Select", "options":["allItems", "inview"]},
-      "validators": ["required"],
-      "help": "This value determines when the component registers as complete."
     },
     "_useGraphicsAsPins": {
       "type": "boolean",
