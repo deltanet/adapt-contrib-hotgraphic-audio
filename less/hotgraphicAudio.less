@@ -18,16 +18,16 @@
 			font-size: (@icon-size*2);
 			height: (@icon-size*2);
 			width: (@icon-size*2);
-			color: @item-color;
-			background-color: @item-text-color;
+			color: @item-text-color;
+			background-color: @item-color;
 			border-radius: 50%;
 		}
 
 		.hotgraphicAudio-graphic-pin-text {
 			width: (@icon-size*2);
 			height: (@icon-size*2);
-			color: @item-color;
-			background-color: @item-text-color;
+			color: @item-text-color;
+			background-color: @item-color;
 			border-radius: 50%;
 		}
 
@@ -42,14 +42,16 @@
 		&.visited {
 			.hotgraphicAudio-graphic-pin-icon,
 			.hotgraphicAudio-graphic-pin-text {
-				color: @item-color-visited;
+				color: @item-text-color-visited;
+				background-color: @item-color-visited;
 			}
 		}
 
 		.no-touch &:hover {
 			.hotgraphicAudio-graphic-pin-icon,
 			.hotgraphicAudio-graphic-pin-text {
-				color: @item-color-hover;
+				color: @item-text-color-hover;
+				background-color: @item-color-hover;
 			}
 		}
 	}
