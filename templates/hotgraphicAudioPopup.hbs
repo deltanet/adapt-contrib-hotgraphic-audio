@@ -15,15 +15,15 @@
             </div>
         </div>
         {{/if}}
-        {{#if _graphic}}
-          <div class="hotgraphicAudio-popup-graphic{{#unless body}} fullwidth{{/unless}}">
-            <div class="hotgraphicAudio-popup-graphic-inner">
-              <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}"/>
-            </div>
-            {{#if _graphic.attribution}}
-              <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
-            {{/if}}
+        {{#if _graphic.src}}
+        <div class="hotgraphicAudio-popup-graphic{{#unless body}} fullwidth{{/unless}}">
+          <div class="hotgraphicAudio-popup-graphic-inner">
+            <img src="{{_graphic.src}}" aria-label="{{_graphic.alt}}"/>
           </div>
+          {{#if _graphic.attribution}}
+            <div class="graphic-attribution">{{{_graphic.attribution}}}</div>
+          {{/if}}
+        </div>
         {{/if}}
         </div>
     </div>

@@ -80,7 +80,7 @@ guide the learner’s interaction with the component.
 When viewport size changes to the smallest range, this component will behave like a [**Narrative** component](https://github.com/deltanet/adapt-contrib-narrative-audio). All information will remain available but formatted as a narrative rather than as hot spots on a graphic.  
 
 ----------------------------
-**Version number:**  3.0.1    
+**Version number:**  3.0.2    
 **Framework versions:**  3.3+   
 **Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-hotgraphic/graphs/contributors) / Deltanet  
 **Accessibility support:** WAI AA   
