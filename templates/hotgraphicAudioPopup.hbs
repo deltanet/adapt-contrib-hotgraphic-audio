@@ -9,7 +9,7 @@
         </div>
         {{/if}}
         {{#if body}}
-        <div class="hotgraphicAudio-popup-body{{#unless _graphic}} fullwidth{{/unless}}">
+        <div class="hotgraphicAudio-popup-body{{#unless _graphic.src}} fullwidth{{/unless}}">
             <div class="hotgraphicAudio-popup-body-inner">
                 {{{compile body}}}
             </div>
