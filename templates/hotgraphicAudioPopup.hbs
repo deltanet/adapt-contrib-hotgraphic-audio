@@ -2,7 +2,7 @@
     {{#each _items}}
     <div class="hotgraphicAudio-item component-item clearfix {{#if _isVisited}}visited{{/if}} {{#if _isActive}}active{{/if}} {{_classes}}" {{#unless _isActive}} aria-hidden="true"{{/unless}} data-index={{@index}}>
         {{#if title}}
-        <div{{#if _isActive}} id="notify-heading"{{/if}} class="notify-popup-title" {{a11y_attrs_heading 'componentItem'}}>
+        <div{{#if _isActive}} id="notify-heading"{{/if}} class="notify-popup-title" {{a11y_attrs_heading 'notify'}}>
             <div class="notify-popup-title-inner h5" role="heading" aria-level="1">
                 {{{compile title}}}
             </div>
