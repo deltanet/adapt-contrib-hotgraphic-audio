@@ -162,7 +162,7 @@ define([
                 _isCancellable: true,
                 _showCloseButton: false,
                 _closeOnBackdrop: true,
-                _classes: ' hotgraphicAudio'
+                _classes: ' hotgraphicAudio '+this.model.get('_classes')
             });
 
             this.listenToOnce(Adapt, {
