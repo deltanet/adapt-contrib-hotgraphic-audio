@@ -29,7 +29,6 @@ define([
 
     onOpened() {
       this.applyNavigationClasses(this.model.getActiveItem().get('_index'));
-      this.updatePageCount();
       this.handleTabs();
     }
 
@@ -49,15 +48,6 @@ define([
       Adapt.a11y.toggleAccessibleEnabled($controls.filter('.next'), shouldEnableNext);
     }
 
-    updatePageCount() {
-      const template = Adapt.course.get('_globals')._components._hotgraphic.popupPagination || '{{itemNumber}} / {{totalItems}}';
-      const labelText = Handlebars.compile(template)({
-        itemNumber: this.model.getActiveItem().get('_index') + 1,
-        totalItems: this.model.get('_items').length
-      });
-      this.$('.hotgraphic-popup__count').html(labelText);
-    }
-
     handleTabs() {
       Adapt.a11y.toggleHidden(this.$('.hotgraphic-popup__item:not(.is-active) *'), true);
       Adapt.a11y.toggleHidden(this.$('.hotgraphic-popup__item.is-active *'), false);
@@ -66,7 +56,6 @@ define([
     onItemsActiveChange(item, _isActive) {
       if (!_isActive) return;
       const index = item.get('_index');
-      this.updatePageCount();
       this.applyItemClasses(index);
       this.handleTabs();
       this.handleFocus(index);
@@ -90,6 +79,19 @@ define([
       this.$('.hotgraphic-popup__item')
           .filter(`[data-index="${item.get('_index')}"]`)
           .addClass('is-visited');
+    }
+
+    preRender() {
+      if (Adapt.device.screenSize === 'large') {
+        if (Adapt.audio && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+            this.replaceText(Adapt.audio.textSize);
+        }
+
+        this.render();
+        return;
+      }
+
+      this.reRender();
     }
 
     render() {
@@ -135,6 +137,17 @@ define([
       nextItem.toggleVisited(true);
     }
 
+    replaceText(value) {
+      if (Adapt.audio && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
+        if(value == 0) {
+          this.$('.hotgraphicAudio-popup-title-inner').html(this.model.get('_items')[i].title);
+          this.$('.hotgraphicAudio-popup-body-inner').html(this.model.get('_items')[i].body);
+        } else {
+          this.$('.hotgraphicAudio-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
+          this.$('.hotgraphicAudio-popup-body-inner').html(this.model.get('_items')[i].bodyReduced);
+        }
+      }
+    }
   };
 
   HotgraphicPopupView.template = 'hotgraphicPopup';

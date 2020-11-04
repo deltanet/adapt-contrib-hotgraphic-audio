@@ -34,7 +34,6 @@ define([
 
     setUpEventListeners() {
       this.listenTo(Adapt, 'device:changed', this.reRender);
-
       this.listenTo(this.model.get('_children'), {
         'change:_isActive': this.onItemsActiveChange,
         'change:_isVisited': this.onItemsVisitedChange
@@ -155,10 +154,12 @@ define([
         model: this.model
       });
 
+      const showCloseButton = this.model.get('close') ? false : true;
+
       Adapt.notify.popup({
         _view: this.popupView,
         _isCancellable: true,
-        _showCloseButton: false,
+        _showCloseButton: showCloseButton,
         _classes: 'hotgraphic ' + this.model.get('_classes')
       });
 

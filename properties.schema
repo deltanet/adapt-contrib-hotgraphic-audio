@@ -36,6 +36,7 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
+      "help": "This is the instruction text",
       "translatable": true
     },
     "_setCompletionOn": {
@@ -50,6 +51,16 @@
       },
       "validators": [],
       "help": "Whether completion is based on the learner having viewed all the items - or just having viewed the component"
+    },
+    "close": {
+      "type": "string",
+      "required": true,
+      "title": "Close button text",
+      "default": "Close",
+      "inputType": "Text",
+      "validators": [],
+      "help": "This is the text for the close popup button.",
+      "translatable": true
     },
     "_graphic": {
       "type": "object",
@@ -70,7 +81,7 @@
           "default": "",
           "inputType": "Text",
           "validators": [],
-          "help": "Alternative text for the image",
+          "help": "Alternative text for this image",
           "translatable": true
         },
         "attribution": {
@@ -129,7 +140,7 @@
       "validators": [],
       "help": "If disabled, the Hotgraphic will render a scaled down 'desktop' version (pins over image / tiles) of the component in 'mobile' view instead of being replaced by a Narrative interaction."
     },
-    "_useNumberedPins": {
+    "_useNumbersAsPins": {
       "type": "boolean",
       "required": true,
       "default": false,
@@ -173,6 +184,15 @@
             "help": "Title displayed in the popup",
             "translatable": true
           },
+          "titleReduced": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "inputType": "Text",
+            "validators": [],
+            "help": "Reduced text title displayed in the popup",
+            "translatable": true
+          },
           "_ariaLevel": {
             "type": "number",
             "required": true,
@@ -189,6 +209,15 @@
             "inputType": "TextArea",
             "validators": ["required"],
             "help": "Body text displayed in the popup",
+            "translatable": true
+          },
+          "bodyReduced": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "inputType": "TextArea",
+            "validators": [],
+            "help": "Reduced text body text displayed in the popup",
             "translatable": true
           },
           "strapline": {
@@ -266,14 +295,24 @@
               }
             }
           },
-          "_classes": {
-            "type": "string",
+          "pinAlt": {
+            "type":"string",
             "required": false,
             "default": "",
-            "title": "Item Popup Classes",
+            "title": "Pin alternative text",
             "inputType": "Text",
             "validators": [],
-            "help": "Allows you to specify custom CSS classes to be applied to the popup item. Supported classes are 'align-image-left', 'hide-desktop-image', and 'hide-popup-image' which aligns the item image to the left, hides the pop up image in desktop view, and hides the pop up image for all screen sizes respectively."
+            "help": "",
+            "translatable": true
+          },
+          "_pinIcon": {
+            "type": "string",
+            "required": false,
+            "title": "Pin Icon",
+            "default": "icon-pin",
+            "inputType": "Text",
+            "validators": [],
+            "help": "Add a CSS class to show the desired icon."
           },
           "_left": {
             "type": "number",
@@ -292,6 +331,31 @@
             "inputType": "Number",
             "validators": ["required", "number"],
             "help": "Top position of pin"
+          },
+          "_classes": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "Item Popup Classes",
+            "inputType": "Text",
+            "validators": [],
+            "help": "Allows you to specify custom CSS classes to be applied to the popup item. Supported classes are 'align-image-left', 'hide-desktop-image', and 'hide-popup-image' which aligns the item image to the left, hides the pop up image in desktop view, and hides the pop up image for all screen sizes respectively."
+          },
+         "_audio": {
+            "type": "object",
+            "required": false,
+            "title": "Feedback Audio",
+            "properties": {
+              "src": {
+                "type": "string",
+                "required": false,
+                "default": "",
+                "title": "Audio",
+                "inputType": "Asset:audio",
+                "validators": [],
+                "help": "Optional audio for this item"
+              }
+            }
           }
         }
       }

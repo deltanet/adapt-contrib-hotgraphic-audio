@@ -3,7 +3,7 @@
 **Hot Graphic** is a *presentation component* bundled with the [Adapt framework](https://github.com/adaptlearning/adapt_framework).  
 <img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/hotgraphic01.gif" alt="Hot Graphic in action">  
 
-When a learner clicks on a hot spot within the image, a pop-up is displayed that consists of text with an image. [Visit the **Hot Graphic** wiki](https://github.com/adaptlearning/adapt-contrib-hotgraphic/wiki) for more information about its functionality and for explanations of key properties. 
+When a learner clicks on a hot spot within the image, a pop-up is displayed that consists of text with an image. [Visit the **Hot Graphic** wiki](https://github.com/adaptlearning/adapt-contrib-hotgraphic/wiki) for more information about its functionality and for explanations of key properties.
 
 ## Installation
 
@@ -24,7 +24,7 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 
 ## Settings Overview
 
-The attributes listed below are used in *components.json* to configure **Hot Graphic**, and are properly formatted as JSON in [*example.json*](https://github.com/adaptlearning/adapt-contrib-hotgraphic/blob/master/example.json). Visit the [**Hot Graphic** wiki](https://github.com/adaptlearning/adapt-contrib-hotgraphic/wiki) for more information about how they appear in the [authoring tool](https://github.com/adaptlearning/adapt_authoring/wiki). 
+The attributes listed below are used in *components.json* to configure **Hot Graphic**, and are properly formatted as JSON in [*example.json*](https://github.com/adaptlearning/adapt-contrib-hotgraphic/blob/master/example.json). Visit the [**Hot Graphic** wiki](https://github.com/adaptlearning/adapt-contrib-hotgraphic/wiki) for more information about how they appear in the [authoring tool](https://github.com/adaptlearning/adapt_authoring/wiki).
 
 ### Attributes
 
@@ -44,14 +44,14 @@ guide the learner’s interaction with the component.
 **mobileInstruction** (string): This is optional text that will be substituted for **instruction** when `Adapt.device.screenSize` is `small` (i.e., when viewed on mobile devices).  
 
 **\_setCompletionOn** (string): This value determines when the component registers as complete. Acceptable values are `"allItems"` and `"inview"`. `"allItems"` requires each pop-up item to be visited. `"inview"` requires the **Hot Graphic** component to enter the view port completely.  
-  
+
 **\_canCycleThroughPagination** (boolean): Enables the pop-ups to be cycled through endlessly using either the previous or next icon. When set to `true`, clicking "next" on the final stage will display the very first stage. When set to `false`, the final stage will display only a "previous" icon. The default is `false`.  
 
 **\_hidePagination** (boolean): When set to `true`, hides the "previous" and "next" icons and progress indicator (e.g., "1/5") on the pop-up's toolbar. The default is `false`.
 
 **\_isNarrativeOnMobile** (boolean): When set to `false` the Hotgraphic will render a scaled down 'desktop' version (pins over image / tiles) of the component in mobile view instead of being replaced by a Narrative interaction. The default is `true`.
 
-**\_useNumberedPins** (boolean): If set to `true`, the pin icons will be replaced with the item number. Useful if you want pins to be visited in a set order or show steps in a process. The default is `false`.
+**\_useNumbersAsPins** (boolean): If set to `true`, the pin icons will be replaced with the item number. Useful if you want pins to be visited in a set order or show steps in a process. The default is `false`.
 
 **\_useGraphicsAsPins** (boolean): If set to `true`, the image specified by **\_graphic.src** will be ignored and the popup images specified in **\_items[n].\_graphic.src** will instead be laid out in a 2 item width grid system. See [example.json](example.json#L77-L121) for a working example. The default is `false`.
 
@@ -83,11 +83,11 @@ guide the learner’s interaction with the component.
 
 >>**\_classes** (string): CSS class name to be applied to hotgraphic pin or, alternatively, to the hotspot tile when **\_useGraphicsAsPins** is set to true The class must be predefined in one of the Less files. Separate multiple classes with a space.
 
->**\_pin** (string): Optional image that can appear instead of the default pin icon. It contains values for **src** and **alt**. 
+>**\_pin** (string): Optional image that can appear instead of the default pin icon. It contains values for **src** and **alt**.
 
 >>**src** (string): File name (including path) of the image. Path should be relative to the *src* folder (e.g., *course/en/images/origami-menu-two.jpg*).
 
->>**alt** (string): This text becomes the pin image’s `alt` attribute. 
+>>**alt** (string): This text becomes the pin image’s `alt` attribute.
 
 >**strapline** (string): This text is displayed when `Adapt.device.screenSize` is `small` (i.e., when viewed on mobile devices). It is presented in a title bar above the image.
 

@@ -13,12 +13,13 @@
         "instruction": "Select the hotspots on the image to reveal the text. This component will scale down to a narrative when viewed on mobile.",
         "mobileBody": "This is optional body text that will be shown when viewed on mobile.",
         "mobileInstruction": "This is optional instruction text that will be shown when viewed on mobile.",
+        "close": "Close",
         "_comment": "setCompletionOn = inview | allItems",
         "_setCompletionOn": "allItems",
         "_canCycleThroughPagination": false,
         "_hidePagination": false,
         "_isNarrativeOnMobile": true,
-        "_useNumberedPins": false,
+        "_useNumbersAsPins": false,
         "_useGraphicsAsPins": false,
         "_isRound": false,
         "_graphic": {
@@ -77,7 +78,7 @@
     }
 
     // Example using graphics as pins
-    // The following example lays out the item graphics (_items._graphic) 
+    // The following example lays out the item graphics (_items._graphic)
     // in a 2x2 grid.
     // --------------------------------------------------
     {
@@ -115,7 +116,7 @@
     }
 
     // Example using graphic pins
-    // In the following example there is a background image and each pin 
+    // In the following example there is a background image and each pin
     // is an image rather than a pin icon
     // --------------------------------------------------
     {

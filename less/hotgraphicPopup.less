@@ -8,23 +8,16 @@
   }
 
   &__toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
     right: 0;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: centre;
     width: 100%;
+    align-items: center;
   }
 
   &__toolbar.hide-pagination {
     justify-content: flex-end;
-  }
-
-  &__nav {
-    display: flex;
-    align-items: center;
   }
 
   &__count {
@@ -34,6 +27,15 @@
 
   &__controls.is-disabled {
     visibility: hidden;
+  }
+
+  &__controls.next {
+    position: absolute;
+    right: 0;
+    .dir-rtl & {
+			right: inherit;
+			left: 0;
+		}
   }
 
   // Pop up item
@@ -73,10 +75,7 @@
 
   &__controls.next .icon {
     .icon-controls-small-right;
-  }
-
-  &__close .icon {
-    .icon-cross;
+    right: 0;
   }
 
   // Hide the items that are not currently active and being viewed
