@@ -32,7 +32,7 @@ define([
       this.handleTabs();
     }
 
-    applyNavigationClasses (index) {
+    applyNavigationClasses(index) {
       const itemCount = this.model.get('_items').length;
       const canCycleThroughPagination = this.model.get('_canCycleThroughPagination');
 
@@ -41,8 +41,8 @@ define([
       const $controls = this.$('.hotgraphic-popup__controls');
 
       this.$('hotgraphic-popup__nav')
-          .toggleClass('first', !shouldEnableBack)
-          .toggleClass('last', !shouldEnableNext);
+        .toggleClass('first', !shouldEnableBack)
+        .toggleClass('last', !shouldEnableNext);
 
       Adapt.a11y.toggleAccessibleEnabled($controls.filter('.back'), shouldEnableBack);
       Adapt.a11y.toggleAccessibleEnabled($controls.filter('.next'), shouldEnableNext);
@@ -77,14 +77,14 @@ define([
       if (!_isVisited) return;
 
       this.$('.hotgraphic-popup__item')
-          .filter(`[data-index="${item.get('_index')}"]`)
-          .addClass('is-visited');
+        .filter(`[data-index="${item.get('_index')}"]`)
+        .addClass('is-visited');
     }
 
     preRender() {
       if (Adapt.device.screenSize === 'large') {
         if (Adapt.audio && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
-            this.replaceText(Adapt.audio.textSize);
+          this.replaceText(Adapt.audio.textSize);
         }
 
         this.render();
@@ -139,7 +139,7 @@ define([
 
     replaceText(value) {
       if (Adapt.audio && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
-        if(value == 0) {
+        if (value == 0) {
           this.$('.hotgraphicAudio-popup-title-inner').html(this.model.get('_items')[i].title);
           this.$('.hotgraphicAudio-popup-body-inner').html(this.model.get('_items')[i].body);
         } else {

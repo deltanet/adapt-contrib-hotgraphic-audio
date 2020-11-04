@@ -6,7 +6,7 @@ define([
 
   class HotGraphicView extends ComponentView {
 
-    events () {
+    events() {
       return {
         'click .js-hotgraphic-item-click': 'onPinClicked'
       };
@@ -137,7 +137,7 @@ define([
       }
     }
 
-    onPinClicked (event) {
+    onPinClicked(event) {
       const item = this.model.getItem($(event.currentTarget).data('index'));
       item.toggleActive(true);
       item.toggleVisited(true);
