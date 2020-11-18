@@ -17,7 +17,6 @@
         "_comment": "setCompletionOn = inview | allItems",
         "_setCompletionOn": "allItems",
         "_canCycleThroughPagination": false,
-        "_hidePagination": false,
         "_isNarrativeOnMobile": true,
         "_useNumbersAsPins": false,
         "_useGraphicsAsPins": false,

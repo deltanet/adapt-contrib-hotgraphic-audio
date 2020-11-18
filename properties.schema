@@ -113,15 +113,6 @@
       "help": "This instruction text is displayed on mobile devices when this component turns into a Narrative",
       "translatable": true
     },
-    "_hidePagination": {
-      "type": "boolean",
-      "required": true,
-      "default": false,
-      "title": "Hide pagination",
-      "inputType": "Checkbox",
-      "validators": [],
-      "help": "If enabled, the progress indicator and previous and next links will not be shown on the popup toolbar"
-    },
     "_canCycleThroughPagination": {
       "type": "boolean",
       "required": true,

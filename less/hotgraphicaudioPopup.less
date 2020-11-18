@@ -1,0 +1,109 @@
+.hotgraphicaudio-popup {
+  position: relative;
+
+  // Pop up toolbar
+  // --------------------------------------------------
+  &__toolbar {
+    margin-top: @btn-margin;
+    clear: both;
+  }
+
+  &__toolbar.hide-pagination {
+    justify-content: flex-end;
+  }
+
+  &__count {
+    padding: @icon-padding;
+    line-height: 1;
+  }
+
+  &__controls {
+    position: absolute;
+    border-radius: @btn-border-radius;
+  }
+
+  &__controls.is-disabled {
+    visibility: hidden;
+  }
+
+  &__controls.next {
+    right: 0;
+    .dir-rtl & {
+			right: inherit;
+			left: 0;
+		}
+  }
+
+  // Pop up item
+  // --------------------------------------------------
+  &__item-body {
+		padding-bottom: @btn-margin;
+		float: left;
+		.dir-rtl & {
+			float: right;
+		}
+
+		width: 60%;
+		overflow: hidden;
+
+		@media (max-width: @device-width-medium) {
+			width: 100%;
+		}
+
+		&.is-fullwidth {
+			width: 100%;
+		}
+	}
+
+  &__item-image-container {
+    float: right;
+		padding-bottom: @btn-margin;
+		width: 38%;
+		margin-left: 2%;
+
+		.dir-rtl & {
+			float: left;
+			margin-left: 0;
+			margin-right: 2%;
+		}
+
+		@media (max-width: @device-width-medium) {
+			float: none;
+			margin-left: 0;
+			width: 100%;
+		}
+
+		&.is-fullwidth {
+			width: 100%;
+			margin-left: 0;
+		}
+
+		&.is-hidden {
+			display: none;
+		}
+  }
+
+  // Modifier for pop up item to add rounded border
+  // --------------------------------------------------
+  &__item.is-round &__item-image {
+    border-radius: 50%;
+  }
+
+  // Hotgraphic pop up icons
+  // --------------------------------------------------
+  &__controls.back .icon {
+    .icon-controls-small-left;
+  }
+
+  &__controls.next .icon {
+    .icon-controls-small-right;
+    right: 0;
+  }
+
+  // Hide the items that are not currently active and being viewed
+  // --------------------------------------------------
+  &__item:not(.is-active) {
+    .u-display-none;
+  }
+
+}

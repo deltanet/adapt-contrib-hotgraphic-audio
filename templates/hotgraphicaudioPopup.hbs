@@ -1,0 +1,61 @@
+<div class="hotgraphicaudio-popup__inner">
+
+  {{#each _items}}
+  <div class="hotgraphicaudio-popup__item{{#if _classes}} {{_classes}}{{/if}}{{#if _isVisited}} is-visited{{/if}}{{#if _isActive}} is-active{{/if}}{{#if ../_isRound}} is-round{{/if}}" data-index={{@index}}{{#unless _isActive}} aria-hidden="true"{{/unless}}>
+
+    {{#if title}}
+    <div{{#if _isActive}} id="notify-heading"{{/if}} class="notify__title" {{a11y_attrs_heading 'notify'}}>
+      <div class="notify__title-inner">
+        {{{title}}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if body}}
+    <div class="hotgraphicaudio-popup__item-body{{#unless _graphic.src}} is-fullwidth{{/unless}}">
+      <div class="hotgraphicaudio-popup__item-body-inner">
+        {{{compile body}}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if _graphic.src}}
+    <div class="hotgraphicaudio-popup__item-image-container{{#unless body}} is-fullwidth{{/unless}}{{#if _graphic.attribution}} has-attribution{{/if}}">
+
+      <img class="hotgraphicaudio-popup__item-image" src="{{_graphic.src}}" {{#if _graphic.alt}}aria-label="{{_graphic.alt}}"{{else}}aria-hidden="true"{{/if}}>
+
+      {{#if _graphic.attribution}}
+      <div class="component__attribution hotgraphicaudio-popup__item-attribution">
+        <div class="component__attribution-inner hotgraphicaudio-popup__item-attribution-inner">
+          {{{_graphic.attribution}}}
+        </div>
+      </div>
+      {{/if}}
+
+    </div>
+    {{/if}}
+
+  </div>
+  {{/each}}
+
+</div>
+
+{{#if _canCycleThroughPagination}}
+<div class="hotgraphicaudio-popup__toolbar">
+  <button data-direction="back" class="btn-icon hotgraphicaudio-popup__controls back js-hotgraphicaudio-controls-click" aria-label="{{_globals._accessibility._ariaLabels.previous}}">
+    <div class="icon"></div>
+  </button>
+
+  <button data-direction="next" class="btn-icon hotgraphicaudio-popup__controls next js-hotgraphicaudio-controls-click" aria-label="{{_globals._accessibility._ariaLabels.next}}">
+    <div class="icon"></div>
+  </button>
+</div>
+{{/if}}
+
+<div class="notify__btn-container">
+	<button class="btn-text notify__btn js-hotgraphicaudio-popup-close" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">
+		{{{close}}}
+  </button>
+</div>
+
+{{a11y_wrap_focus}}

@@ -47,8 +47,6 @@ guide the learner’s interaction with the component.
 
 **\_canCycleThroughPagination** (boolean): Enables the pop-ups to be cycled through endlessly using either the previous or next icon. When set to `true`, clicking "next" on the final stage will display the very first stage. When set to `false`, the final stage will display only a "previous" icon. The default is `false`.  
 
-**\_hidePagination** (boolean): When set to `true`, hides the "previous" and "next" icons and progress indicator (e.g., "1/5") on the pop-up's toolbar. The default is `false`.
-
 **\_isNarrativeOnMobile** (boolean): When set to `false` the Hotgraphic will render a scaled down 'desktop' version (pins over image / tiles) of the component in mobile view instead of being replaced by a Narrative interaction. The default is `true`.
 
 **\_useNumbersAsPins** (boolean): If set to `true`, the pin icons will be replaced with the item number. Useful if you want pins to be visited in a set order or show steps in a process. The default is `false`.

@@ -1,14 +1,14 @@
 define([
   'core/js/adapt',
   'core/js/views/componentView',
-  './hotgraphicPopupView'
-], function(Adapt, ComponentView, HotgraphicPopupView) {
+  './hotgraphicAudioPopupView'
+], function(Adapt, ComponentView, HotgraphicAudioPopupView) {
 
-  class HotGraphicView extends ComponentView {
+  class HotGraphicAudioView extends ComponentView {
 
     events() {
       return {
-        'click .js-hotgraphic-item-click': 'onPinClicked'
+        'click .js-hotgraphicaudio-item-click': 'onPinClicked'
       };
     }
 
@@ -47,11 +47,11 @@ define([
     }
 
     replaceWithNarrative() {
-      const NarrativeView = Adapt.getViewClass('narrative');
-      if (!NarrativeView) return;
+      const NarrativeAudioView = Adapt.getViewClass('narrativeAudio');
+      if (!NarrativeAudioView) return;
 
       const model = this.prepareNarrativeModel();
-      const newNarrative = new NarrativeView({ model });
+      const newNarrative = new NarrativeAudioView({ model });
       // NOTE: if this component is doing its inital render in 'narrative mode',
       // this.$el.parents() won't exist at this point - which is why the following is
       // written the way it is, instead of (what would appear to be) the more efficient
@@ -67,7 +67,7 @@ define([
 
     prepareNarrativeModel() {
       this.model.set({
-        _component: 'narrative',
+        _component: 'narrativeAudio',
         _wasHotgraphic: true,
         originalBody: this.model.get('body'),
         originalInstruction: this.model.get('instruction')
@@ -96,7 +96,7 @@ define([
 
     getItemElement(model) {
       const index = model.get('_index');
-      return this.$('.js-hotgraphic-item-click').filter(`[data-index="${index}"]`);
+      return this.$('.js-hotgraphicaudio-item-click').filter(`[data-index="${index}"]`);
     }
 
     onItemsVisitedChange(model, _isVisited) {
@@ -131,7 +131,7 @@ define([
     }
 
     postRender() {
-      this.$('.hotgraphic__widget').imageready(this.setReadyStatus.bind(this));
+      this.$('.hotgraphicaudio__widget').imageready(this.setReadyStatus.bind(this));
       if (this.model.get('_setCompletionOn') === 'inview') {
         this.setupInviewCompletion('.component__widget');
       }
@@ -150,7 +150,7 @@ define([
 
       this._isPopupOpen = true;
 
-      this.popupView = new HotgraphicPopupView({
+      this.popupView = new HotgraphicAudioPopupView({
         model: this.model
       });
 
@@ -160,7 +160,7 @@ define([
         _view: this.popupView,
         _isCancellable: true,
         _showCloseButton: showCloseButton,
-        _classes: 'hotgraphic ' + this.model.get('_classes')
+        _classes: 'hotgraphicaudio ' + this.model.get('_classes')
       });
 
       this.listenToOnce(Adapt, {
@@ -175,8 +175,8 @@ define([
 
   }
 
-  HotGraphicView.template = 'hotgraphic';
+  HotGraphicAudioView.template = 'hotgraphicaudio';
 
-  return HotGraphicView;
+  return HotGraphicAudioView;
 
 });

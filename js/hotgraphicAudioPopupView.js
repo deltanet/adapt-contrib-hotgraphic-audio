@@ -2,16 +2,16 @@ define([
   'core/js/adapt'
 ], function(Adapt) {
 
-  class HotgraphicPopupView extends Backbone.View {
+  class HotgraphicAudioPopupView extends Backbone.View {
 
     className() {
-      return 'hotgraphic-popup';
+      return 'hotgraphicaudio-popup';
     }
 
     events() {
       return {
-        'click .js-hotgraphic-popup-close': 'closePopup',
-        'click .js-hotgraphic-controls-click': 'onControlClick'
+        'click .js-hotgraphicaudio-popup-close': 'closePopup',
+        'click .js-hotgraphicaudio-controls-click': 'onControlClick'
       };
     }
 
@@ -38,9 +38,9 @@ define([
 
       const shouldEnableBack = index > 0 || canCycleThroughPagination;
       const shouldEnableNext = index < itemCount - 1 || canCycleThroughPagination;
-      const $controls = this.$('.hotgraphic-popup__controls');
+      const $controls = this.$('.hotgraphicaudio-popup__controls');
 
-      this.$('hotgraphic-popup__nav')
+      this.$('hotgraphicaudio-popup__nav')
         .toggleClass('first', !shouldEnableBack)
         .toggleClass('last', !shouldEnableNext);
 
@@ -49,8 +49,8 @@ define([
     }
 
     handleTabs() {
-      Adapt.a11y.toggleHidden(this.$('.hotgraphic-popup__item:not(.is-active) *'), true);
-      Adapt.a11y.toggleHidden(this.$('.hotgraphic-popup__item.is-active *'), false);
+      Adapt.a11y.toggleHidden(this.$('.hotgraphicaudio-popup__item:not(.is-active) *'), true);
+      Adapt.a11y.toggleHidden(this.$('.hotgraphicaudio-popup__item.is-active *'), false);
     }
 
     onItemsActiveChange(item, _isActive) {
@@ -62,21 +62,21 @@ define([
     }
 
     applyItemClasses(index) {
-      this.$(`.hotgraphic-popup__item[data-index="${index}"]`).addClass('is-active').removeAttr('aria-hidden');
-      this.$(`.hotgraphic-popup__item[data-index="${index}"] .hotgraphic-popup__item-title`).attr('id', 'notify-heading');
-      this.$(`.hotgraphic-popup__item:not([data-index="${index}"])`).removeClass('is-active').attr('aria-hidden', 'true');
-      this.$(`.hotgraphic-popup__item:not([data-index="${index}"]) .hotgraphic-popup__item-title`).removeAttr('id');
+      this.$(`.hotgraphicaudio-popup__item[data-index="${index}"]`).addClass('is-active').removeAttr('aria-hidden');
+      this.$(`.hotgraphicaudio-popup__item[data-index="${index}"] .hotgraphicaudio-popup__item-title`).attr('id', 'notify-heading');
+      this.$(`.hotgraphicaudio-popup__item:not([data-index="${index}"])`).removeClass('is-active').attr('aria-hidden', 'true');
+      this.$(`.hotgraphicaudio-popup__item:not([data-index="${index}"]) .hotgraphicaudio-popup__item-title`).removeAttr('id');
     }
 
     handleFocus(index) {
-      Adapt.a11y.focusFirst(this.$('.hotgraphic-popup__inner .is-active'));
+      Adapt.a11y.focusFirst(this.$('.hotgraphicaudio-popup__inner .is-active'));
       this.applyNavigationClasses(index);
     }
 
     onItemsVisitedChange(item, _isVisited) {
       if (!_isVisited) return;
 
-      this.$('.hotgraphic-popup__item')
+      this.$('.hotgraphicaudio-popup__item')
         .filter(`[data-index="${item.get('_index')}"]`)
         .addClass('is-visited');
     }
@@ -140,18 +140,18 @@ define([
     replaceText(value) {
       if (Adapt.audio && Adapt.course.get('_audio')._reducedTextisEnabled && this.model.get('_audio') && this.model.get('_audio')._reducedTextisEnabled) {
         if (value == 0) {
-          this.$('.hotgraphicAudio-popup-title-inner').html(this.model.get('_items')[i].title);
-          this.$('.hotgraphicAudio-popup-body-inner').html(this.model.get('_items')[i].body);
+          this.$('.hotgraphicaudio-popup-title-inner').html(this.model.get('_items')[i].title);
+          this.$('.hotgraphicaudio-popup-body-inner').html(this.model.get('_items')[i].body);
         } else {
-          this.$('.hotgraphicAudio-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
-          this.$('.hotgraphicAudio-popup-body-inner').html(this.model.get('_items')[i].bodyReduced);
+          this.$('.hotgraphicaudio-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
+          this.$('.hotgraphicaudio-popup-body-inner').html(this.model.get('_items')[i].bodyReduced);
         }
       }
     }
   };
 
-  HotgraphicPopupView.template = 'hotgraphicPopup';
+  HotgraphicAudioPopupView.template = 'hotgraphicaudioPopup';
 
-  return HotgraphicPopupView;
+  return HotgraphicAudioPopupView;
 
 });

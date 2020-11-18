@@ -1,0 +1,75 @@
+<div class="component__inner hotgraphicaudio__inner">
+
+  {{> component this}}
+
+  <div class="component__widget hotgraphicaudio__widget{{#unless _useGraphicsAsPins}} is-pin{{else}} is-tile{{/unless}}{{#if _graphic.attribution}} has-attribution{{/if}}">
+
+    {{#unless _useGraphicsAsPins}}
+
+    <img class="hotgraphicaudio__image" src="{{_graphic.src}}" {{#if _graphic.alt}}aria-label="{{_graphic.alt}}"{{else}}aria-hidden="true"{{/if}}>
+
+    {{#if _graphic.attribution}}
+    <div class="component__attribution hotgraphicaudio__attribution">
+      <div class="component__attribution-inner hotgraphicaudio__attribution-inner">
+        {{{_graphic.attribution}}}
+      </div>
+    </div>
+    {{/if}}
+
+    <div class="hotgraphicaudio__pin-item-container" role="list">
+
+      {{#each _items}}
+      <div class="hotgraphicaudio__pin-item" role="listitem">
+
+        <button class="btn-icon hotgraphicaudio__pin item-{{@index}}{{#if _graphic._classes}} {{_graphic._classes}}{{/if}}{{#if _pin.src}} has-pin-image{{/if}}{{#if _isVisited}} is-visited{{/if}} js-hotgraphicaudio-item-click" data-index="{{@index}}" style="top: {{{_top}}}%; left: {{{_left}}}%;">
+
+          <span class="aria-label">{{#if ../_useNumbersAsPins}}{{math @index "+" 1}} {{/if}}{{{compile title}}}.</span>
+
+          {{#if _pin.src}}
+          <div class="hotgraphicaudio__pin-image-container item-{{@index}}">
+            <img class="hotgraphicaudio__pin-image" src="{{_pin.src}}">
+          </div>
+          {{else}}
+
+          {{#if ../_useNumbersAsPins}}
+          <div class="hotgraphicaudio__pin-number" aria-hidden="true">
+            {{math @index "+" 1}}
+          </div>
+          {{else}}
+          <div class="icon {{#if _pinIcon}}{{_pinIcon}}{{else}}icon-pin{{/if}}"></div>
+          {{/if}}
+
+          {{/if}}
+
+        </button>
+
+      </div>
+      {{/each}}
+
+    </div>
+
+    {{else}}
+
+    <div class="hotgraphicaudio__tile-item-container" role="list">
+
+      {{#each _items}}
+      <div class="hotgraphicaudio__tile-item" role="listitem">
+
+        <button class="hotgraphicaudio__tile item-{{@index}}{{#if _graphic._classes}} {{_graphic._classes}}{{/if}}{{#if _isVisited}} is-visited{{/if}} js-hotgraphicaudio-item-click" data-index="{{@index}}">
+
+          <span class="aria-label">{{{compile title}}}.</span>
+
+          <img class="hotgraphicaudio__tile-image" src="{{_graphic.src}}">
+
+        </button>
+
+      </div>
+      {{/each}}
+
+    </div>
+
+    {{/unless}}
+
+  </div>
+
+</div>

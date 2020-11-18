@@ -1,6 +1,6 @@
 {
   "name": "adapt-contrib-hotgraphic-audio",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "framework": ">=5.5",
   "homepage": "https://github.com/deltanet/adapt-contrib-hotgraphic-audio",
   "issues": "https://github.com/deltanet/adapt-contrib-hotgraphic-audio/issues",
@@ -13,7 +13,7 @@
     "adapt-component"
   ],
   "pluginDependencies": {
-    "adapt-contrib-narrative": ">=6.1"
+    "adapt-contrib-narrative-audio": ">=6.1"
   },
   "license": "GPL-3.0"
 }
