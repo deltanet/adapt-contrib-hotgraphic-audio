@@ -36,13 +36,13 @@ define([
       const itemCount = this.model.get('_items').length;
       const canCycleThroughPagination = this.model.get('_canCycleThroughPagination');
 
-      const shouldEnableBack = index > 0 || canCycleThroughPagination;
-      const shouldEnableNext = index < itemCount - 1 || canCycleThroughPagination;
+      const shouldEnableBack = (canCycleThroughPagination && index > 0) || false;
+      const shouldEnableNext = (canCycleThroughPagination && index < itemCount - 1) || false;
       const $controls = this.$('.hotgraphicaudio-popup__controls');
 
-      this.$('hotgraphicaudio-popup__nav')
-        .toggleClass('first', !shouldEnableBack)
-        .toggleClass('last', !shouldEnableNext);
+      this.$('hotgraphicaudio-popup__controls')
+        .toggleClass('.back', !shouldEnableBack)
+        .toggleClass('.next', !shouldEnableNext);
 
       Adapt.a11y.toggleAccessibleEnabled($controls.filter('.back'), shouldEnableBack);
       Adapt.a11y.toggleAccessibleEnabled($controls.filter('.next'), shouldEnableNext);

@@ -45,7 +45,7 @@ guide the learner’s interaction with the component.
 
 **\_setCompletionOn** (string): This value determines when the component registers as complete. Acceptable values are `"allItems"` and `"inview"`. `"allItems"` requires each pop-up item to be visited. `"inview"` requires the **Hot Graphic** component to enter the view port completely.  
 
-**\_canCycleThroughPagination** (boolean): Enables the pop-ups to be cycled through endlessly using either the previous or next icon. When set to `true`, clicking "next" on the final stage will display the very first stage. When set to `false`, the final stage will display only a "previous" icon. The default is `false`.  
+**\_canCycleThroughPagination** (boolean): Enables the pop-ups to be clicked through using either the previous or next icon. The default is `false`.  
 
 **\_isNarrativeOnMobile** (boolean): When set to `false` the Hotgraphic will render a scaled down 'desktop' version (pins over image / tiles) of the component in mobile view instead of being replaced by a Narrative interaction. The default is `true`.
 

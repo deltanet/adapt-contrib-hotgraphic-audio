@@ -120,7 +120,7 @@
       "title": "Cycle through item pagination",
       "inputType": "Checkbox",
       "validators": [],
-      "help": "If enabled, the popup navigation buttons will cycle continuously through the popup items (i.e. clicking next whilst on the last item will cause the first item to be shown."
+      "help": "When set to true, shows the 'previous' and 'next' icons on the pop-up's toolbar."
     },
     "_isNarrativeOnMobile": {
       "type": "boolean",
