@@ -30,6 +30,7 @@ define([
     onOpened() {
       this.applyNavigationClasses(this.model.getActiveItem().get('_index'));
       this.handleTabs();
+      this.playAudio(this.model.getActiveItem().get('_index'));this.playAudio(this.model.getActiveItem().get('_index'));
     }
 
     applyNavigationClasses(index) {
@@ -111,6 +112,8 @@ define([
       if (index === -1) return;
 
       this.setItemState(index);
+
+      this.playAudio(index);
     }
 
     getNextIndex(direction) {
@@ -146,6 +149,15 @@ define([
           this.$('.hotgraphicaudio-popup-title-inner').html(this.model.get('_items')[i].titleReduced);
           this.$('.hotgraphicaudio-popup-body-inner').html(this.model.get('_items')[i].bodyReduced);
         }
+      }
+    }
+
+    playAudio(index) {
+      var currentItem = this.model.getItem(index);
+
+      if (Adapt.audio && this.model.has('_audio') && this.model.get('_audio')._isEnabled && Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1) {
+        Adapt.audio.audioClip[this.model.get('_audio')._channel].onscreenID = "";
+        Adapt.trigger('audio:playAudio', currentItem.get('_audio').src, this.model.get('_id'), this.model.get('_audio')._channel);
       }
     }
   };
