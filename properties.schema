@@ -78,10 +78,11 @@
         "alt": {
           "type": "string",
           "required": false,
+          "title": "Alternative text",
           "default": "",
           "inputType": "Text",
           "validators": [],
-          "help": "Alternative text for this image",
+          "help": "A description of the image; required when it has meaning that must be conveyed to the learner. For 'decorative' images, leave this blank.",
           "translatable": true
         },
         "attribution": {
@@ -191,7 +192,7 @@
             "title": "Title level",
             "inputType": "Number",
             "validators": ["required", "number"],
-            "help": "Aria level for title"
+            "help": "ARIA level to assign to the popup title. Leave set to 0 to default to the Notify ARIA level (set via the Accessibility section of the course configuration)."
           },
           "body": {
             "type": "string",
@@ -237,9 +238,10 @@
                 "type": "string",
                 "required": false,
                 "default": "",
+                "title": "Alternative text",
                 "inputType": "Text",
                 "validators": [],
-                "help": "Alternative text for the popup image",
+                "help": "A description of the image; required when it has meaning that must be conveyed to the learner. For 'decorative' images, leave this blank.",
                 "translatable": true
               },
               "attribution": {
@@ -281,7 +283,7 @@
                 "default": "",
                 "inputType": "Text",
                 "validators": [],
-                "help": "Alternative text for this image",
+                "help": "A description of the image; required when it has meaning that must be conveyed to the learner. For 'decorative' images, leave this blank.",
                 "translatable": true
               }
             }
