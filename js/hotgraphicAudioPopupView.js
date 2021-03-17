@@ -50,8 +50,8 @@ define([
     }
 
     handleTabs() {
-      Adapt.a11y.toggleHidden(this.$('.hotgraphicaudio-popup__item:not(.is-active) *'), true);
-      Adapt.a11y.toggleHidden(this.$('.hotgraphicaudio-popup__item.is-active *'), false);
+      Adapt.a11y.toggleHidden(this.$('.hotgraphicaudio-popup__item:not(.is-active)'), true);
+      Adapt.a11y.toggleHidden(this.$('.hotgraphicaudio-popup__item.is-active'), false);
     }
 
     onItemsActiveChange(item, _isActive) {

@@ -22,7 +22,7 @@
     {{#if _graphic.src}}
     <div class="hotgraphicaudio-popup__item-image-container{{#unless body}} is-fullwidth{{/unless}}{{#if _graphic.attribution}} has-attribution{{/if}}">
 
-      <img class="hotgraphicaudio-popup__item-image" src="{{_graphic.src}}" {{#if _graphic.alt}}aria-label="{{_graphic.alt}}"{{else}}aria-hidden="true"{{/if}}>
+      <img class="hotgraphicaudio-popup__item-image" src="{{_graphic.src}}" {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
 
       {{#if _graphic.attribution}}
       <div class="component__attribution hotgraphicaudio-popup__item-attribution">
