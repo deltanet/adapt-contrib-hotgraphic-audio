@@ -4,7 +4,7 @@ define([
   './hotgraphicAudioPopupView'
 ], function(Adapt, ComponentView, HotgraphicAudioPopupView) {
 
-  class HotGraphicAudioView extends ComponentView {
+  class HotgraphicAudioView extends ComponentView {
 
     events() {
       return {
@@ -34,6 +34,7 @@ define([
 
     setUpEventListeners() {
       this.listenTo(Adapt, 'device:changed', this.reRender);
+
       this.listenTo(this.model.get('_children'), {
         'change:_isActive': this.onItemsActiveChange,
         'change:_isVisited': this.onItemsVisitedChange
@@ -175,8 +176,8 @@ define([
 
   }
 
-  HotGraphicAudioView.template = 'hotgraphicaudio';
+  HotgraphicAudioView.template = 'hotgraphicaudio';
 
-  return HotGraphicAudioView;
+  return HotgraphicAudioView;
 
 });
